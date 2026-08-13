@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ANAMORPHIC — más allá de la pantalla, por Penta</title>
+    <meta name="description" content="Diseño y producción de contenido anamórfico para pantallas, instalaciones, campañas y experiencias digitales. Una vertical de Penta." />
+    <meta name="theme-color" content="#08090a" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader__mark">ANAMORPHIC</span>
+        <span class="preloader__bar"><i id="preloader-fill"></i></span>
+      </div>
+
+      <div class="grain" aria-hidden="true"></div>
+
+      <header class="nav" data-nav>
+        <a class="nav__mark" href="#hero">
+          <img src="/brand/penta-mark.png" alt="" width="40" height="38" />
+          ANAMORPHIC<span class="nav__by" data-i18n="nav.by">por Penta</span>
+        </a>
+        <nav class="nav__links">
+          <a href="#showcase" data-i18n="nav.work">Trabajo</a>
+          <a href="#capabilities" data-i18n="nav.capabilities">Capacidades</a>
+        </nav>
+        <div class="nav__actions">
+          <a class="nav__cta" href="#final" data-i18n="nav.cta">Iniciar un proyecto</a>
+          <button type="button" class="nav__lang" data-lang-toggle aria-label="Cambiar a inglés">
+            <span data-lang-current>EN</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <!-- 1. HERO ANAMÓRFICO -->
+        <section id="hero" class="hero" data-section>
+          <div class="hero__stage">
+            <video
+              class="hero__video"
+              id="hero-video"
+              muted
+              playsinline
+              loop
+              preload="auto"
+              poster="/media/hero-poster.jpg"
+            >
+              <source src="/media/hero-desktop.webm" type="video/webm" />
+              <source src="/media/hero-desktop.mp4" type="video/mp4" />
+            </video>
+            <div class="hero__vignette"></div>
+            <div class="hero__grid" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="hero__frame">
+            <h1 class="hero__title">
+              <span class="hero__title-line" data-reveal data-i18n="hero.title.line1">Más allá</span>
+              <span class="hero__title-line hero__title-line--outline" data-reveal data-i18n="hero.title.line2">de la pantalla.</span>
+            </h1>
+            <p class="hero__subcopy" data-reveal data-i18n="hero.subcopy">
+              Contenido anamórfico diseñado para romper los límites de las pantallas tradicionales.
+            </p>
+          </div>
+
+          <div class="hero__scrollcue" aria-hidden="true">
+            <span></span>
+            <p data-i18n="hero.scroll">Scroll</p>
+          </div>
+        </section>
+
+        <!-- 2. INTRO / CONCEPT -->
+        <section id="concept" class="concept" data-section>
+          <p class="concept__eyebrow" data-i18n="concept.eyebrow">01 — Concepto</p>
+          <h2 class="concept__statement">
+            <span data-i18n="concept.statement.line1">Diseñamos experiencias visuales</span>
+            <em data-i18n="concept.statement.line2">que no se quedan dentro de la pantalla.</em>
+          </h2>
+          <p class="concept__body" data-i18n="concept.body">
+            Contenido anamórfico para marcas, productos, retail, eventos, pantallas LED,
+            instalaciones y experiencias digitales — pensado para sentirse dimensional
+            desde un único punto de vista.
+          </p>
+          <div class="concept__tags" aria-hidden="true">
+            <span data-i18n="concept.tag.brands">Marcas</span><span data-i18n="concept.tag.products">Productos</span><span data-i18n="concept.tag.retail">Retail</span>
+            <span data-i18n="concept.tag.events">Eventos</span><span data-i18n="concept.tag.led">Pantallas LED</span><span data-i18n="concept.tag.installations">Instalaciones</span>
+            <span data-i18n="concept.tag.digital">Experiencias digitales</span>
+          </div>
+        </section>
+
+        <!-- 3. SCROLL EXPERIENCE (video scrubbing) -->
+        <section id="scroll-experience" class="scroll-exp" data-section>
+          <div class="scroll-exp__pin" data-pin>
+            <div class="scroll-exp__media">
+              <video
+                class="scroll-exp__video"
+                id="scrub-video"
+                muted
+                playsinline
+                preload="auto"
+                poster="/media/scrub-poster.jpg"
+              >
+                <source src="/media/scrub-desktop.webm" type="video/webm" />
+                <source src="/media/scrub-desktop.mp4" type="video/mp4" />
+              </video>
+              <div class="scroll-exp__vignette"></div>
+            </div>
+
+            <div class="scroll-exp__copy">
+              <p class="scroll-exp__step" data-step="0">
+                <span class="scroll-exp__index">01</span> <span data-i18n="scrollexp.step0">Forma completa</span>
+              </p>
+              <p class="scroll-exp__step" data-step="1">
+                <span class="scroll-exp__index">02</span> <span data-i18n="scrollexp.step1">Cambio de perspectiva</span>
+              </p>
+              <p class="scroll-exp__step" data-step="2">
+                <span class="scroll-exp__index">03</span> <span data-i18n="scrollexp.step2">Emerge la profundidad</span>
+              </p>
+              <p class="scroll-exp__step" data-step="3">
+                <span class="scroll-exp__index">04</span> <span data-i18n="scrollexp.step3">Más allá del cuadro</span>
+              </p>
+            </div>
+
+            <div class="scroll-exp__progress" aria-hidden="true">
+              <i id="scrub-progress-fill"></i>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. PRODUCT / OBJECT BREAKDOWN -->
+        <section id="breakdown" class="breakdown" data-section>
+          <div class="breakdown__pin" data-pin>
+            <p class="breakdown__eyebrow" data-i18n="breakdown.eyebrow">03 — Anatomía</p>
+            <div class="breakdown__stage" id="breakdown-stage">
+              <div class="breakdown__layer" data-layer="0">
+                <span class="breakdown__label" data-i18n="breakdown.layer0">Placa base</span>
+              </div>
+              <div class="breakdown__layer" data-layer="1">
+                <span class="breakdown__label" data-i18n="breakdown.layer1">Máscara de profundidad</span>
+              </div>
+              <div class="breakdown__layer" data-layer="2">
+                <span class="breakdown__label" data-i18n="breakdown.layer2">Capa de refracción</span>
+              </div>
+              <div class="breakdown__layer" data-layer="3">
+                <span class="breakdown__label" data-i18n="breakdown.layer3">Superficie anamórfica</span>
+              </div>
+              <div class="breakdown__layer" data-layer="4">
+                <span class="breakdown__label" data-i18n="breakdown.layer4">Punto de vista fijo del espectador</span>
+              </div>
+              <div class="breakdown__badge" data-i18n="breakdown.badge">
+                Geometría provisoria — a reemplazar por el render 3D final
+              </div>
+            </div>
+            <p class="breakdown__caption" data-i18n="breakdown.caption">
+              Ensamblar → explotar → inspeccionar → reconstruir. Esta estructura está lista
+              para recibir un render 3D real o una secuencia capturada en la próxima iteración.
+            </p>
+          </div>
+        </section>
+
+        <!-- 5. SHOWCASE -->
+        <section id="showcase" class="showcase" data-section>
+          <div class="showcase__pin" data-pin>
+            <p class="showcase__eyebrow" data-i18n="showcase.eyebrow">04 — Trabajos seleccionados</p>
+            <div class="showcase__track" id="showcase-track">
+              <article class="showcase__item">
+                <div class="showcase__media showcase__media--video">
+                  <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-reel-poster.jpg">
+                    <source data-src="/media/showcase-reel.webm" type="video/webm" />
+                    <source data-src="/media/showcase-reel.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="showcase__meta">
+                  <span class="showcase__num">01</span>
+                  <h3 data-i18n="showcase.item1.title">Reel anamórfico</h3>
+                  <p data-i18n="showcase.item1.desc">Piezas anamórficas seleccionadas · Compilado</p>
+                </div>
+              </article>
+              <article class="showcase__item">
+                <div class="showcase__media showcase__media--video">
+                  <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-2-poster.jpg">
+                    <source data-src="/media/showcase-2.webm" type="video/webm" />
+                    <source data-src="/media/showcase-2.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="showcase__meta">
+                  <span class="showcase__num">02</span>
+                  <h3 data-i18n="showcase.item2.title">Vidriera retail 3D</h3>
+                  <p data-i18n="showcase.item2.desc">Formato de exhibición · Producto en profundidad</p>
+                </div>
+              </article>
+              <article class="showcase__item">
+                <div class="showcase__media showcase__media--video">
+                  <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-3-poster.jpg">
+                    <source data-src="/media/showcase-3.webm" type="video/webm" />
+                    <source data-src="/media/showcase-3.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="showcase__meta">
+                  <span class="showcase__num">03</span>
+                  <h3 data-i18n="showcase.item3.title">Pantalla LED inmersiva</h3>
+                  <p data-i18n="showcase.item3.desc">Instalación CGI · Ilusión a pantalla completa</p>
+                </div>
+              </article>
+              <article class="showcase__item">
+                <div class="showcase__media showcase__media--video">
+                  <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-4-poster.jpg">
+                    <source data-src="/media/showcase-4.webm" type="video/webm" />
+                    <source data-src="/media/showcase-4.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="showcase__meta">
+                  <span class="showcase__num">04</span>
+                  <h3 data-i18n="showcase.item4.title">Publicidad exterior 3D</h3>
+                  <p data-i18n="showcase.item4.desc">Formato OOH · Anamórfico en vía pública</p>
+                </div>
+              </article>
+              <article class="showcase__item">
+                <div class="showcase__media showcase__media--video">
+                  <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-5-poster.jpg">
+                    <source data-src="/media/showcase-5.webm" type="video/webm" />
+                    <source data-src="/media/showcase-5.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="showcase__meta">
+                  <span class="showcase__num">05</span>
+                  <h3 data-i18n="showcase.item5.title">Anuncio en pantalla plana</h3>
+                  <p data-i18n="showcase.item5.desc">CGI en tiempo real · Ilusión de profundidad</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. CAPABILITIES -->
+        <section id="capabilities" class="capabilities" data-section>
+          <p class="capabilities__eyebrow" data-i18n="capabilities.eyebrow">05 — Capacidades</p>
+          <ul class="capabilities__list">
+            <li class="capabilities__item" data-cap>
+              <span class="capabilities__index">01</span>
+              <h3 data-i18n="capabilities.item1.title">Contenido Anamórfico</h3>
+              <p data-i18n="capabilities.item1.desc">Concepto + producción.</p>
+            </li>
+            <li class="capabilities__item" data-cap>
+              <span class="capabilities__index">02</span>
+              <h3 data-i18n="capabilities.item2.title">Visualización de Producto 3D</h3>
+              <p data-i18n="capabilities.item2.desc">Productos diseñados para profundidad y perspectiva.</p>
+            </li>
+            <li class="capabilities__item" data-cap>
+              <span class="capabilities__index">03</span>
+              <h3 data-i18n="capabilities.item3.title">Motion &amp; CGI</h3>
+              <p data-i18n="capabilities.item3.desc">Animación de alto impacto y narrativa visual.</p>
+            </li>
+            <li class="capabilities__item" data-cap>
+              <span class="capabilities__index">04</span>
+              <h3 data-i18n="capabilities.item4.title">Experiencias Web Interactivas</h3>
+              <p data-i18n="capabilities.item4.desc">Contenido anamórfico llevado a entornos digitales impulsados por scroll.</p>
+            </li>
+            <li class="capabilities__item" data-cap>
+              <span class="capabilities__index">05</span>
+              <h3 data-i18n="capabilities.item5.title">LED y Pantallas Físicas</h3>
+              <p data-i18n="capabilities.item5.desc">Contenido diseñado para instalaciones reales.</p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 7. FINAL EXPERIENCE / CTA -->
+        <section id="final" class="final" data-section>
+          <div class="final__stage">
+            <video
+              class="final__video"
+              muted
+              playsinline
+              loop
+              preload="none"
+              data-lazy-video
+              poster="/media/scrub-poster.jpg"
+            >
+              <source data-src="/media/final-mobile.webm" type="video/webm" />
+              <source data-src="/media/final-mobile.mp4" type="video/mp4" />
+            </video>
+            <div class="final__vignette"></div>
+            <img class="final__brand" src="/brand/penta-lockup-dark.jpg" alt="" aria-hidden="true" />
+          </div>
+          <div class="final__frame">
+            <h2 class="final__title" data-reveal>
+              <span data-i18n="final.title.line1">Creemos algo</span><br /><em data-i18n="final.title.line2">más allá de la pantalla.</em>
+            </h2>
+            <a class="final__link" href="mailto:hello@pentamkt.com">
+              hello@pentamkt.com
+              <span>→</span>
+            </a>
+            <p class="final__sub" data-i18n="final.sub">Penta — División de Contenido Anamórfico</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>© <span id="year"></span> Penta. <span data-i18n="footer.text">Anamorphic Web — prototipo</span>.</span>
+        <span>Buenos Aires</span>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
