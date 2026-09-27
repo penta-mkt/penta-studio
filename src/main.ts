@@ -9,9 +9,10 @@ import { initNav } from "./modules/nav";
 import { initHero } from "./modules/hero";
 import { initReveals } from "./modules/reveals";
 import { initScrollExperience } from "./modules/scrollExperience";
-import { initBreakdown } from "./modules/breakdown";
+import { initProductGallery } from "./modules/productGallery";
 import { initShowcase } from "./modules/showcase";
 import { initCapabilities } from "./modules/capabilities";
+import { initResults } from "./modules/results";
 import { initLazyVideos } from "./modules/lazyVideo";
 import { initLanguageToggle } from "./modules/i18n";
 
@@ -34,9 +35,10 @@ async function boot() {
   initReveals();
   initHero({ reduceMotion });
   initScrollExperience({ isMobile, reduceMotion });
-  initBreakdown({ reduceMotion });
+  initProductGallery();
   initShowcase({ isMobile });
   initCapabilities();
+  initResults();
   initLazyVideos();
 
   await initPreloader();

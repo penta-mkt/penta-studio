@@ -10,12 +10,12 @@
   --ink-faint: #5c5d5a;
   --line: rgba(243, 242, 238, 0.14);
 
-  /* Penta brand gradient, sampled from the isotipo */
-  --brand-red: #ef1a2c;
-  --brand-magenta: #a324a8;
-  --brand-blue: #3d4ce0;
-  --gradient-brand: linear-gradient(100deg, var(--brand-red) 0%, var(--brand-magenta) 48%, var(--brand-blue) 100%);
-  --accent: var(--brand-blue);
+  /* Penta Studio brand gradient, sampled directly from the new fingerprint logo */
+  --brand-red: #f01530;
+  --brand-magenta: #a4109a;
+  --brand-blue: #3730e5;
+  --gradient-brand: linear-gradient(100deg, var(--brand-red) 0%, var(--brand-magenta) 50%, var(--brand-blue) 100%);
+  --accent: var(--brand-magenta);
 
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Sora", "Inter", system-ui, sans-serif;
@@ -265,6 +265,112 @@ section {
 }
 
 /* ============================================================
+   Ambient brand glow (used across several sections)
+   ============================================================ */
+
+/* Soft, low-opacity brand-gradient glow dropped into a handful of
+   plain-background sections — echoes the agency's red/magenta/blue
+   palette without competing with the content. Two blurred blobs, kept
+   subtle so text and imagery stay the focus; each section's own
+   children are lifted above it via the z-index rule below. Sections
+   that already carry video, photography or a full-bleed image don't
+   get it — there's nothing for it to add there.
+
+   Each blob also carries a mask-image that feathers its own top and
+   bottom edge to nothing. Combined with keeping the blob's hot core
+   pulled in from the section's own edge (instead of hanging past it),
+   this guarantees the glow has already faded to the flat background
+   color before it reaches the section boundary — so the handoff into
+   the next section (whether that section glows or not) reads as one
+   continuous background instead of a visible seam. */
+.concept,
+.manuals,
+.accounts,
+.results,
+.capabilities {
+  isolation: isolate;
+}
+
+.concept::before,
+.concept::after,
+.manuals::before,
+.manuals::after,
+.accounts::before,
+.accounts::after,
+.results::before,
+.results::after,
+.capabilities::before,
+.capabilities::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.concept::before,
+.accounts::before,
+.capabilities::before {
+  top: 4%;
+  right: -6%;
+  width: min(60vw, 860px);
+  height: min(60vw, 860px);
+  background: conic-gradient(from 210deg, var(--brand-blue), var(--brand-magenta) 45%, var(--brand-red) 75%, transparent 100%);
+  opacity: 0.32;
+}
+
+.concept::after,
+.accounts::after,
+.capabilities::after {
+  bottom: 6%;
+  left: -8%;
+  width: min(44vw, 620px);
+  height: min(44vw, 620px);
+  background: radial-gradient(circle, var(--brand-red), var(--brand-magenta) 60%, transparent 78%);
+  opacity: 0.24;
+}
+
+/* .manuals and .results get the mirrored placement, so the glow
+   alternates sides as the page scrolls from one section to the next. */
+.results::before,
+.manuals::before {
+  top: 4%;
+  left: -6%;
+  width: min(60vw, 860px);
+  height: min(60vw, 860px);
+  background: conic-gradient(from 30deg, var(--brand-blue), var(--brand-magenta) 45%, var(--brand-red) 75%, transparent 100%);
+  opacity: 0.32;
+}
+
+.results::after,
+.manuals::after {
+  bottom: 6%;
+  right: -8%;
+  width: min(44vw, 620px);
+  height: min(44vw, 620px);
+  background: radial-gradient(circle, var(--brand-red), var(--brand-magenta) 60%, transparent 78%);
+  opacity: 0.24;
+}
+
+/* Capabilities ("servicios") runs through several stacked category
+   rows and is often much taller than one screen, so the two corner
+   blobs above don't reach the middle of the list. This wash sits
+   directly on the list container, scales with however tall it ends
+   up being, and reads as a bit more of the same tone specifically
+   behind the service tags, where the gray pill borders make it show
+   up best. */
+.capabilities__list {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 45% at 12% 8%, rgba(164, 16, 154, 0.16), transparent 65%),
+    radial-gradient(ellipse 70% 45% at 88% 45%, rgba(55, 48, 229, 0.14), transparent 65%),
+    radial-gradient(ellipse 70% 45% at 15% 82%, rgba(240, 21, 48, 0.13), transparent 65%);
+}
+
+/* ============================================================
    1. HERO
    ============================================================ */
 
@@ -414,6 +520,7 @@ section {
    ============================================================ */
 
 .concept {
+  position: relative;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -423,11 +530,77 @@ section {
   gap: clamp(24px, 4vw, 40px);
 }
 
-.concept__eyebrow {
+.concept__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.concept__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 18px;
+  white-space: nowrap;
+}
+
+.concept__badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  flex: none;
+}
+
+.concept__statement em {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+  font-weight: 700;
+}
+
+.concept__eyebrow,
+.product-gallery__eyebrow,
+.showcase__eyebrow,
+.stand__eyebrow,
+.capabilities__eyebrow,
+.manuals__eyebrow,
+.accounts__eyebrow,
+.motion-feature__eyebrow,
+.results__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
+}
+
+.concept__eyebrow::before,
+.product-gallery__eyebrow::before,
+.showcase__eyebrow::before,
+.stand__eyebrow::before,
+.capabilities__eyebrow::before,
+.manuals__eyebrow::before,
+.accounts__eyebrow::before,
+.motion-feature__eyebrow::before,
+.results__eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--gradient-brand);
+  flex: none;
 }
 
 .concept__statement {
@@ -553,95 +726,166 @@ section {
 }
 
 /* ============================================================
-   4. BREAKDOWN
+   4. PRODUCT GALLERY (editorial photo collage, horizontal scroll)
    ============================================================ */
 
-.breakdown {
-  height: 300vh;
+.product-gallery {
   background: var(--bg);
-}
-
-.breakdown__pin {
-  position: relative;
-  height: 100vh;
+  padding: var(--section-pad) 0 clamp(60px, 9vh, 120px);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: var(--section-pad) var(--gutter) clamp(40px, 6vh, 80px);
 }
 
-.breakdown__eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
+.product-gallery__head {
+  padding: 0 var(--gutter);
+  max-width: 62ch;
+  margin-bottom: clamp(32px, 5vh, 56px);
 }
 
-.breakdown__stage {
-  position: relative;
-  flex: 1;
-  margin: clamp(24px, 4vh, 48px) 0;
-  perspective: 1400px;
+.product-gallery__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(26px, 4vw, 46px);
+  line-height: 1.16;
+  margin-top: 14px;
+  max-width: 16ch;
 }
 
-.breakdown__layer {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(560px, 68vw);
-  height: min(340px, 42vw);
-  transform: translate(-50%, -50%);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: linear-gradient(155deg, var(--bg-raised) 0%, rgba(14, 16, 18, 0.4) 100%);
-  display: flex;
-  align-items: flex-end;
-  padding: 18px 22px;
-  backdrop-filter: blur(2px);
+.product-gallery__title span {
+  color: var(--ink);
 }
 
-.breakdown__layer[data-layer="0"] {
-  background: linear-gradient(155deg, #14161a 0%, #0b0c0e 100%);
-}
-.breakdown__layer[data-layer="1"] {
-  background: linear-gradient(155deg, rgba(239, 26, 44, 0.1) 0%, rgba(14, 16, 18, 0.3) 100%);
-}
-.breakdown__layer[data-layer="2"] {
-  background: linear-gradient(155deg, rgba(163, 36, 168, 0.14) 0%, rgba(14, 16, 18, 0.2) 100%);
-}
-.breakdown__layer[data-layer="3"] {
-  background: linear-gradient(155deg, rgba(61, 76, 224, 0.18) 0%, rgba(14, 16, 18, 0.15) 100%);
-}
-.breakdown__layer[data-layer="4"] {
-  background: transparent;
-  border-style: dashed;
-}
-
-.breakdown__label {
-  font-size: 12px;
-  letter-spacing: 0.06em;
+.product-gallery__desc {
+  margin-top: 18px;
+  max-width: 48ch;
   color: var(--ink-dim);
-}
-
-.breakdown__badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  border: 1px dashed var(--line);
-  padding: 6px 10px;
-  border-radius: 999px;
-}
-
-.breakdown__caption {
-  max-width: 52ch;
-  color: var(--ink-dim);
-  font-size: 13px;
+  font-size: clamp(14px, 1.3vw, 16px);
   font-weight: 300;
   line-height: 1.6;
+}
+
+.product-gallery__track-wrap {
+  padding: 0 var(--gutter);
+}
+
+.product-gallery__track {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(18px, 2.6vw, 32px);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.product-gallery__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual tiles hung directly on the section background — no card,
+   no frame, square corners. A single wider "feature" tile breaks the
+   rhythm without needing a fragile nested-grid layout. */
+.product-gallery__cell {
+  position: relative;
+  flex: none;
+  scroll-snap-align: start;
+  overflow: hidden;
+  background: var(--bg-raised);
+  width: clamp(240px, 30vw, 380px);
+  aspect-ratio: 2 / 3;
+}
+
+.product-gallery__cell--feature {
+  width: clamp(300px, 38vw, 480px);
+  aspect-ratio: 4 / 5;
+}
+
+.product-gallery__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-soft);
+}
+
+.product-gallery__cell:hover img {
+  transform: scale(1.035);
+}
+
+.product-gallery__nav {
+  display: flex;
+  gap: 10px;
+  padding: 0 var(--gutter);
+  margin-top: clamp(24px, 3vh, 36px);
+}
+
+.product-gallery__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.product-gallery__arrow:hover:not(:disabled) {
+  background: var(--gradient-brand);
+  border-color: transparent;
+}
+
+.product-gallery__arrow:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+@media (max-width: 720px) {
+  .product-gallery__cell {
+    width: 62vw;
+  }
+
+  .product-gallery__cell--feature {
+    width: 74vw;
+  }
+}
+
+/* ============================================================
+   4.5 PANORAMIC REEL (full-bleed anamorphic showreel)
+   ============================================================ */
+
+.reel {
+  padding: 0;
+  background: #000;
+}
+
+.reel__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 20 / 3;
+  overflow: hidden;
+  background: #000;
+}
+
+.reel__frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 960px) {
+  .reel__frame {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+@media (max-width: 560px) {
+  .reel__frame {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 /* ============================================================
@@ -649,7 +893,12 @@ section {
    ============================================================ */
 
 .showcase {
-  height: 400vh;
+  /* No fixed height here on purpose: the pin's scroll distance is
+     computed dynamically in showcase.ts from the track's actual content
+     width (GSAP auto-inserts a spacer sized to match), so this wrapper
+     just needs to size to that content. A hardcoded vh guess here used
+     to outlive item-count changes and leave a long dead scroll gap
+     before the next section once the carousel finished early. */
   background: var(--bg);
 }
 
@@ -663,10 +912,6 @@ section {
 }
 
 .showcase__eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
   padding: 0 var(--gutter);
   margin-bottom: clamp(24px, 4vh, 48px);
 }
@@ -692,7 +937,6 @@ section {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  border-radius: 14px;
   overflow: hidden;
   background: var(--bg-raised);
   display: flex;
@@ -704,6 +948,14 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.showcase__media--wide {
+  aspect-ratio: 16 / 9;
+}
+
+.showcase__media--square {
+  aspect-ratio: 1 / 1;
 }
 
 .showcase__media--tone-a {
@@ -751,19 +1003,72 @@ section {
 }
 
 /* ============================================================
+   5.5 STAND / PHYSICAL EXPERIENCE
+   ============================================================ */
+
+.stand {
+  padding: var(--section-pad) var(--gutter);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(24px, 3.4vw, 40px);
+}
+
+.stand__eyebrow {
+  align-self: flex-start;
+  width: min(1400px, 100%);
+  margin: 0 auto;
+}
+
+.stand__frame {
+  width: min(1400px, 100%);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.stand__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stand__caption {
+  width: min(1400px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.stand__caption h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.6vw, 32px);
+  max-width: 24ch;
+}
+
+.stand__caption p {
+  color: var(--ink-dim);
+  font-size: 14px;
+  font-weight: 300;
+  max-width: 56ch;
+  line-height: 1.5;
+}
+
+/* ============================================================
    6. CAPABILITIES
    ============================================================ */
 
 .capabilities {
+  position: relative;
   padding: var(--section-pad) var(--gutter);
   background: var(--bg);
 }
 
 .capabilities__eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
   margin-bottom: clamp(20px, 3vh, 32px);
 }
 
@@ -812,6 +1117,29 @@ section {
   opacity: 1;
 }
 
+.capabilities__tags {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease) 0.15s;
+}
+
+.capabilities__tags span {
+  font-size: 11px;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+
+.capabilities__item.is-visible .capabilities__tags {
+  opacity: 1;
+}
+
 @media (max-width: 720px) {
   .capabilities__item {
     grid-template-columns: 40px 1fr;
@@ -819,6 +1147,778 @@ section {
   .capabilities__item p {
     grid-column: 2 / 3;
   }
+}
+
+/* ============================================================
+   6.5 BRAND MANUALS
+   ============================================================ */
+
+.manuals {
+  position: relative;
+  padding: var(--section-pad) var(--gutter);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.manuals__case {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+.manuals__info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: sticky;
+  top: 120px;
+}
+
+.manuals__client-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.manuals__client {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.manuals__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.manuals__badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+}
+
+.manuals__scope {
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+.manuals__info h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.1;
+}
+
+.manuals__info p {
+  font-size: 15px;
+  color: var(--ink-dim);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+.manuals__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.manuals__tags span {
+  font-size: 11px;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+.manuals__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.manuals__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.manuals__img--hero {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+.manuals__gallery .manuals__img:not(.manuals__img--hero) {
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 860px) {
+  .manuals__case {
+    grid-template-columns: 1fr;
+  }
+  .manuals__info {
+    position: static;
+  }
+  .manuals__gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .manuals__img--hero {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .manuals__gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   6.75 ACCOUNTS WE MANAGE
+   ============================================================ */
+
+.accounts {
+  position: relative;
+  padding: var(--section-pad) var(--gutter);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.accounts__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.4vw, 28px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.accounts__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: clamp(20px, 2.6vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-raised);
+}
+
+.accounts__logo {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+.accounts__info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.accounts__name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.accounts__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.accounts__handle {
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.accounts__desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.accounts__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  width: fit-content;
+  margin-top: 2px;
+}
+
+.accounts__item--more {
+  background: transparent;
+  border: 1px dashed var(--line);
+  padding: 0;
+}
+
+.accounts__more-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  padding: clamp(20px, 2.6vw, 28px);
+  text-decoration: none;
+  color: inherit;
+}
+
+.accounts__more-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ink-dim);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.accounts__more-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.accounts__more-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.accounts__more-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-faint);
+}
+
+.accounts__item--more:hover {
+  border-color: transparent;
+  background: var(--bg-raised);
+}
+
+.accounts__item--more:hover .accounts__more-icon {
+  border-color: transparent;
+  background: var(--gradient-brand);
+  color: #fff;
+}
+
+.accounts__stat::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  flex: none;
+}
+
+@media (max-width: 860px) {
+  .accounts__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .accounts__list {
+    grid-template-columns: 1fr;
+  }
+  .accounts__item {
+    align-items: flex-start;
+  }
+}
+
+/* ============================================================
+   7. RESULTS
+   ============================================================ */
+
+.results {
+  position: relative;
+  padding: var(--section-pad) var(--gutter);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.results__headline {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.8vw, 20px);
+  margin-top: 14px;
+}
+
+/* A bolder, more defined gradient orb reserved for this headline moment —
+   inspired by the big color-block reference: same brand conic gradient
+   used across the site, just turned up (less blur, more opacity) so it
+   reads as a deliberate backdrop rather than the subtle ambient glow
+   used elsewhere. Masked top/bottom so it still fades to the flat
+   background before it reaches the section edges, same as every other
+   glow on the page — no seams. */
+.results__headline::before {
+  content: "";
+  position: absolute;
+  top: -22%;
+  right: -14%;
+  width: min(62vw, 860px);
+  height: min(62vw, 860px);
+  border-radius: 50%;
+  background: conic-gradient(from 200deg, var(--brand-blue), var(--brand-magenta) 42%, var(--brand-red) 72%, var(--brand-blue) 100%);
+  filter: blur(70px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+  opacity: 0.55;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.results__case-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.results__case-eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  flex: none;
+}
+
+.results__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(34px, 6.4vw, 88px);
+  line-height: 1.05;
+  max-width: 30ch;
+}
+
+.results__title em {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+  font-weight: 700;
+}
+
+.results__case-subhead {
+  max-width: 58ch;
+  font-size: clamp(15px, 1.5vw, 19px);
+  font-weight: 300;
+  color: var(--ink-dim);
+  line-height: 1.55;
+}
+
+.results__feature {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.6vw, 26px);
+  padding: clamp(28px, 3.6vw, 44px);
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+}
+
+.results__feature-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.results__feature-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.results__feature-label {
+  max-width: 64ch;
+  font-size: clamp(16px, 1.6vw, 20px);
+  color: var(--ink-dim);
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+.results__feature-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.results__feature-chip {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 500;
+  border: 1px solid var(--line);
+  padding: 9px 16px;
+}
+
+/* ---- Expand / collapse toggle + full case detail ---- */
+
+.results__feature-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 11px 18px;
+  cursor: pointer;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.results__feature-toggle:hover {
+  border-color: var(--ink-dim);
+  background: rgba(243, 242, 238, 0.04);
+}
+
+.results__feature-toggle-icon {
+  transition: transform 0.4s var(--ease);
+}
+
+.results__feature-toggle[aria-expanded="true"] .results__feature-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.results__feature-toggle--close {
+  margin-top: 8px;
+}
+
+.results__detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.6s var(--ease);
+}
+
+.results__detail.is-open {
+  grid-template-rows: 1fr;
+}
+
+.results__detail-inner {
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 3.6vw, 44px);
+  padding-top: clamp(8px, 1.4vw, 16px);
+}
+
+.results__chart {
+  border-top: 1px solid var(--line);
+  padding-top: clamp(20px, 2.6vw, 28px);
+}
+
+.results__chart-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(18px, 1.8vw, 24px);
+  color: var(--ink);
+  max-width: 40ch;
+}
+
+.results__chart-caption {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-faint);
+  max-width: 50ch;
+}
+
+.results__chart-scroll {
+  margin-top: clamp(24px, 3vw, 36px);
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.results__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(8px, 1.4vw, 16px);
+  height: 160px;
+  min-width: 560px;
+}
+
+.results__bar {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 8px;
+}
+
+.results__bar-value {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+
+.results__bar-fill {
+  width: 100%;
+  height: var(--h);
+  background: rgba(243, 242, 238, 0.16);
+  transition: height 0.6s var(--ease);
+}
+
+.results__bar.is-scaled .results__bar-fill {
+  background: var(--brand-magenta);
+}
+
+.results__bar.is-scaled .results__bar-value {
+  color: var(--ink);
+}
+
+.results__bar-month {
+  font-size: 11px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.results__chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.results__chart-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.results__legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(243, 242, 238, 0.16);
+}
+
+.results__legend-dot.is-scaled {
+  background: var(--brand-magenta);
+}
+
+.results__stat-group {
+  border-top: 1px solid var(--line);
+  padding-top: clamp(20px, 2.6vw, 28px);
+}
+
+.results__stat-group-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(17px, 1.7vw, 22px);
+  color: var(--ink);
+  max-width: 40ch;
+}
+
+.results__stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: clamp(16px, 2vw, 22px);
+}
+
+.results__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.results__stat-num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 2.6vw, 32px);
+  color: var(--brand-magenta);
+}
+
+.results__stat-label {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-dim);
+  line-height: 1.5;
+  max-width: 30ch;
+}
+
+.results__stat-note {
+  margin-top: clamp(14px, 1.8vw, 18px);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--ink-faint);
+  max-width: 60ch;
+}
+
+@media (max-width: 720px) {
+  .results__stat-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+.results__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.4vw, 28px);
+}
+
+.results__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(24px, 2.8vw, 32px);
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+}
+
+.results__number {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2vw, 26px);
+  color: var(--ink);
+}
+
+.results__account {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+.results__desc {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+  .results__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .results__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   8.5 FEATURED MOTION PIECE
+   ============================================================ */
+
+.motion-feature {
+  padding: var(--section-pad) var(--gutter);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(24px, 3.4vw, 40px);
+}
+
+.motion-feature__eyebrow {
+  align-self: flex-start;
+  width: min(1400px, 100%);
+  margin: 0 auto;
+}
+
+.motion-feature__frame {
+  width: min(720px, 100%);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.motion-feature__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.motion-feature__caption {
+  width: min(1400px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.motion-feature__caption h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.6vw, 32px);
+  max-width: 24ch;
+}
+
+.motion-feature__caption p {
+  color: var(--ink-dim);
+  font-size: 14px;
+  font-weight: 300;
+  max-width: 56ch;
+  line-height: 1.5;
 }
 
 /* ============================================================
@@ -850,18 +1950,6 @@ section {
   position: absolute;
   inset: 0;
   background: radial-gradient(90% 80% at 50% 50%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.92) 100%);
-}
-
-.final__brand {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.16;
-  mix-blend-mode: screen;
-  pointer-events: none;
 }
 
 .final__frame {
@@ -899,6 +1987,24 @@ section {
   border-color: var(--ink);
 }
 
+.final__contacts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: -18px;
+}
+
+.final__contact {
+  font-size: 13px;
+  color: var(--ink-dim);
+  letter-spacing: 0.02em;
+  transition: color 0.3s var(--ease);
+}
+
+.final__contact:hover {
+  color: var(--ink);
+}
+
 .final__sub {
   font-size: 12px;
   color: var(--ink-faint);
@@ -916,6 +2022,15 @@ section {
   font-size: 11px;
   color: var(--ink-faint);
   background: #000;
+}
+
+.footer__link {
+  color: var(--ink-faint);
+  transition: color 0.3s var(--ease);
+}
+
+.footer__link:hover {
+  color: var(--ink);
 }
 
 /* ============================================================

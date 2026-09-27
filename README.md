@@ -37,7 +37,7 @@ src/
     nav.ts                 smooth anchor navigation
     hero.ts                title reveal + pointer-driven depth parallax
     scrollExperience.ts    ⭐ core interaction — scroll → video.currentTime
-    breakdown.ts            pinned assemble/explode/rebuild sequence
+    productGallery.ts       horizontal-scroll editorial photo gallery
     showcase.ts             pinned vertical→horizontal scroll gallery
     capabilities.ts        staggered typographic reveal
     reveals.ts              generic fade/slide-up for [data-reveal] elements

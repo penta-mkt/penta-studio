@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw/scratch asset dumps (not part of the built site)
+/3d videos/
+/algunas cunetas que manejasmo/
+/imagenes/
+/stands/
+/tte/
+/videos anamorfico/

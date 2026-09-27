@@ -10,8 +10,8 @@ import { dictionary, DEFAULT_LANG, STORAGE_KEY, type Lang } from "../i18n/dictio
  * fully own, like the hero title lines). We only ever touch textContent,
  * never innerHTML, and we never remove/replace the elements themselves —
  * so any other module holding a reference to one of these nodes (GSAP
- * targets in hero.ts, scrollExperience.ts, breakdown.ts, capabilities.ts,
- * the [data-reveal] set in reveals.ts) keeps working untouched after a
+ * targets in hero.ts, scrollExperience.ts, capabilities.ts, the
+ * [data-reveal] set in reveals.ts) keeps working untouched after a
  * language switch.
  */
 
@@ -69,8 +69,8 @@ export function applyLanguage(lang: Lang): void {
   });
 
   // Copy length changes between languages, which can change wrapped-text
-  // heights inside pinned sections (breakdown, showcase, scroll-exp) —
-  // re-measure once layout settles so scrub distances stay accurate.
+  // heights inside pinned sections (showcase, scroll-exp) — re-measure
+  // once layout settles so scrub distances stay accurate.
   requestAnimationFrame(() => ScrollTrigger.refresh());
 }
 
