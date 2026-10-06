@@ -107,6 +107,7 @@ export const dictionary: Record<Lang, Dict> = {
     "accounts.more.title": "Y seguimos sumando marcas",
     "accounts.more.desc": "Conversemos sobre tu proyecto",
 
+    "clients.label": "Marcas que confían",
     "results.eyebrow": "04 — Resultados",
     "results.case.eyebrow": "Caso de éxito · Fábrica de calzado mayorista",
     "results.case.subhead":
@@ -249,6 +250,7 @@ export const dictionary: Record<Lang, Dict> = {
     "accounts.more.title": "And we keep adding brands",
     "accounts.more.desc": "Let's talk about your project",
 
+    "clients.label": "Trusted by",
     "results.eyebrow": "04 — Results",
     "results.case.eyebrow": "Success story · Wholesale footwear factory",
     "results.case.subhead":

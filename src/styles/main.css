@@ -1864,6 +1864,100 @@ section {
 }
 
 /* ============================================================
+   7b. CLIENTS — gray logo marquee
+   ============================================================ */
+
+.clients {
+  --logo-scale: 1;
+  --logo-gap: clamp(36px, 5vw, 72px);
+  position: relative;
+  padding: clamp(48px, 8vh, 96px) 0 clamp(56px, 9vh, 104px);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.clients__label {
+  margin: 0 var(--gutter) clamp(28px, 5vh, 52px);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.clients__marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.clients__track {
+  display: flex;
+  width: max-content;
+  animation: clients-scroll 48s linear infinite;
+  will-change: transform;
+}
+
+.clients__marquee:hover .clients__track {
+  animation-play-state: paused;
+}
+
+.clients__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.clients__item {
+  display: flex;
+  align-items: center;
+  gap: var(--logo-gap);
+  padding-left: var(--logo-gap);
+}
+
+/* small purple dot between logos */
+.clients__item::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-magenta);
+  opacity: 0.45;
+}
+
+.clients__logo {
+  display: block;
+  width: auto;
+  height: calc(var(--h) * var(--logo-scale) * 1px);
+  opacity: 0.6; /* white logo -> muted gray on the dark bg */
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@keyframes clients-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 720px) {
+  .clients { --logo-scale: 0.74; }
+  .clients__track { animation-duration: 36s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients__marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .clients__track { animation: none !important; }
+  .clients__group[aria-hidden="true"] { display: none; }
+}
+
+/* ============================================================
    8.5 FEATURED MOTION PIECE
    ============================================================ */
 
