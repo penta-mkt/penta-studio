@@ -42,13 +42,13 @@ export const dictionary: Record<Lang, Dict> = {
     "scrollexp.step3": "Eventos & Activaciones",
     "scrollexp.step4": "Web & Ecosistema Digital",
 
-    "gallery.eyebrow": "05 — Producto en foco",
+    "gallery.eyebrow": "04 — Producto en foco",
     "gallery.title.line1": "Fotografía de producto:",
     "gallery.title.line2": "Street.",
     "gallery.desc":
       "Fotografía de producto pensada para moverse: en la calle, en la pauta, en el feed. Así se ve una pieza cuando no se queda quieta en un catálogo.",
 
-    "showcase.eyebrow": "07 — Trabajos seleccionados",
+    "showcase.eyebrow": "06 — Trabajos seleccionados",
     "showcase.placeholder": "PROVISORIO",
     "showcase.item1.title": "Reel anamórfico",
     "showcase.item1.desc": "Piezas anamórficas seleccionadas · Compilado",
@@ -57,17 +57,17 @@ export const dictionary: Record<Lang, Dict> = {
     "showcase.item3.title": "Anuncio en pantalla plana",
     "showcase.item3.desc": "CGI en tiempo real · Ilusión de profundidad",
 
-    "stand.eyebrow": "08 — Puesta en escena",
+    "stand.eyebrow": "07 — Puesta en escena",
     "stand.title": "Del render a la experiencia real.",
     "stand.desc":
       "Diseñamos y producimos stands y espacios de marca de punta a punta: propuesta 3D, identidad, iluminación, contenido audiovisual y montaje en el lugar.",
 
-    "motionFeature.eyebrow": "06 — Pieza destacada",
+    "motionFeature.eyebrow": "05 — Pieza destacada",
     "motionFeature.title": "Producto médico · Motion 3D",
     "motionFeature.desc":
       "Render y animación de producto pensados para comunicación institucional, con foco en claridad técnica y precisión visual.",
 
-    "capabilities.eyebrow": "09 — Capacidades",
+    "capabilities.eyebrow": "08 — Capacidades",
     "capabilities.item1.title": "Marketing Strategy & Growth",
     "capabilities.item1.desc":
       "No se trata solo de comunicar: se trata de construir una dirección clara. Diseñamos estrategias que conectan los objetivos comerciales de cada marca con campañas, contenidos y acciones pensadas para crecer, posicionarse y generar resultados medibles.",
@@ -108,7 +108,7 @@ export const dictionary: Record<Lang, Dict> = {
     "accounts.more.desc": "Conversemos sobre tu proyecto",
 
     "clients.label": "Marcas que confían",
-    "results.eyebrow": "04 — Resultados",
+    "results.eyebrow": "03 — Resultados",
     "results.case.eyebrow": "Caso de éxito · Fábrica de calzado mayorista",
     "results.case.subhead":
       "Cómo la inversión en publicidad y nuestro servicio se convirtieron en clientes nuevos y en casi un tercio de la facturación de una fábrica.",
@@ -185,13 +185,13 @@ export const dictionary: Record<Lang, Dict> = {
     "scrollexp.step3": "Events & Activations",
     "scrollexp.step4": "Web & Digital Ecosystem",
 
-    "gallery.eyebrow": "05 — Product in focus",
+    "gallery.eyebrow": "04 — Product in focus",
     "gallery.title.line1": "Product photography:",
     "gallery.title.line2": "Street.",
     "gallery.desc":
       "Product photography made to move — on the street, in paid media, in the feed. This is what a piece looks like when it doesn't stay in the catalog.",
 
-    "showcase.eyebrow": "07 — Selected work",
+    "showcase.eyebrow": "06 — Selected work",
     "showcase.placeholder": "PLACEHOLDER",
     "showcase.item1.title": "Anamorphic reel",
     "showcase.item1.desc": "Selected anamorphic pieces · Compilation",
@@ -200,17 +200,17 @@ export const dictionary: Record<Lang, Dict> = {
     "showcase.item3.title": "Flat-screen ad",
     "showcase.item3.desc": "Real-time CGI · Depth illusion",
 
-    "stand.eyebrow": "08 — Bringing it to life",
+    "stand.eyebrow": "07 — Bringing it to life",
     "stand.title": "From render to real-world experience.",
     "stand.desc":
       "We design and produce stands and brand spaces end to end: 3D concept, identity, lighting, audiovisual content and on-site build.",
 
-    "motionFeature.eyebrow": "06 — Featured piece",
+    "motionFeature.eyebrow": "05 — Featured piece",
     "motionFeature.title": "Medical device · 3D motion",
     "motionFeature.desc":
       "Product render and animation built for institutional communication, focused on technical clarity and visual precision.",
 
-    "capabilities.eyebrow": "09 — Capabilities",
+    "capabilities.eyebrow": "08 — Capabilities",
     "capabilities.item1.title": "Marketing Strategy & Growth",
     "capabilities.item1.desc":
       "It's not just about communicating — it's about building a clear direction. We design strategies that connect each brand's business goals with campaigns, content and actions built to grow, position and deliver measurable results.",
@@ -251,7 +251,7 @@ export const dictionary: Record<Lang, Dict> = {
     "accounts.more.desc": "Let's talk about your project",
 
     "clients.label": "Trusted by",
-    "results.eyebrow": "04 — Results",
+    "results.eyebrow": "03 — Results",
     "results.case.eyebrow": "Success story · Wholesale footwear factory",
     "results.case.subhead":
       "How advertising spend and our service turned into new customers — and into nearly a third of a factory's total sales.",
