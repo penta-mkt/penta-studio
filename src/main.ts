@@ -1,53 +1,44 @@
 import "./styles/main.css";
 
-import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { initSmoothScroll } from "./modules/smoothScroll";
-import { initPreloader } from "./modules/preloader";
 import { initNav } from "./modules/nav";
-import { initHero } from "./modules/hero";
 import { initReveals } from "./modules/reveals";
-import { initScrollExperience } from "./modules/scrollExperience";
-import { initProductGallery } from "./modules/productGallery";
-import { initShowcase } from "./modules/showcase";
-import { initCapabilities } from "./modules/capabilities";
+import { initStrips } from "./modules/strips";
 import { initResults } from "./modules/results";
 import { initLazyVideos } from "./modules/lazyVideo";
 import { initLanguageToggle } from "./modules/i18n";
+import { initIntro } from "./modules/intro";
+import { initScrollMotion } from "./modules/scrollMotion";
+import { initHeroHop } from "./modules/heroHop";
+import { initTrafo3D } from "./modules/t3dPin";
+import { initBokeh } from "./modules/bokeh";
+import { initMagnetic, initHeroParallax } from "./modules/magnetic";
 
-gsap.registerPlugin(ScrollTrigger);
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const isMobile = window.matchMedia("(max-width: 720px)").matches;
+// Apply the saved/default language first so nothing flashes in the wrong one.
+initLanguageToggle();
 
-async function boot() {
-  // Apply the saved/default language before anything else measures or
-  // reveals text, so there's no visible flash of the wrong language.
-  initLanguageToggle();
+const lenis = initSmoothScroll();
+initNav(lenis);
+initReveals();
+initStrips();
+initResults();
+initLazyVideos();
+initScrollMotion(reduce);
+initTrafo3D(reduce);
+initBokeh(reduce);
+initMagnetic();
+initHeroParallax();
 
-  const lenis = initSmoothScroll();
+// Opening motion graphic, then the hero keeps hopping the dot.
+initIntro(lenis).then(() => initHeroHop());
 
-  initNav(lenis);
-  initReveals();
-  initHero({ reduceMotion });
-  initScrollExperience({ isMobile, reduceMotion });
-  initProductGallery();
-  initShowcase({ isMobile });
-  initCapabilities();
-  initResults();
-  initLazyVideos();
-
-  await initPreloader();
-
-  // Layout can shift once the preloader is gone (nav appears, fonts
-  // settle) — refresh so every pinned section measures correctly.
-  ScrollTrigger.refresh();
-
-  window.addEventListener("resize", () => ScrollTrigger.refresh());
-}
-
-boot();
+// Pinned scenes depend on final layout: fonts and images.
+document.fonts?.ready.then(() => ScrollTrigger.refresh());
+window.addEventListener("load", () => ScrollTrigger.refresh());

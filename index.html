@@ -3,670 +3,632 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Penta Studio — Creative &amp; Experiential Studio</title>
-    <meta name="description" content="Penta Studio — estudio creativo y experiencial. Estrategia, branding, contenido y experiencias de marca." />
-    <meta name="theme-color" content="#08090a" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
+    <title>Penta Studio — Everything creative. Built to sell.</title>
+    <meta
+      name="description"
+      content="Penta Studio — estudio creativo y experiencial. Estrategia, marca, contenido, web y experiencias bajo una misma dirección, siempre con foco en ventas."
     />
+    <meta name="theme-color" content="#F5F2EE" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script>
+      // Opening motion graphic: lock the page until the intro finishes.
+      // Skipped for reduced motion. The timer is a safety net so the page
+      // can never stay hidden if something fails to load.
+      (function () {
+        var d = document.documentElement;
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          d.classList.add("intro");
+          setTimeout(function () {
+            d.classList.remove("intro");
+          }, 15000);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="app">
-      <div class="preloader" id="preloader" aria-hidden="true">
-        <span class="preloader__mark">PENTA</span>
-        <span class="preloader__bar"><i id="preloader-fill"></i></span>
+      <!-- ============ OPENING MOTION GRAPHIC ============ -->
+      <div class="intro-overlay" id="intro" role="presentation">
+        <div class="cloud cloud--intro" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="grain" aria-hidden="true"></div>
+
+        <div class="intro__stage">
+          <div class="intro__logo" id="intro-logo">
+            <div class="logo-pair">
+              <img class="logo-pair__word" src="/brand/wordmark-nodot-dark.png" alt="penta" width="1000" height="335" />
+              <span class="logo-pair__dot" id="intro-home-dot" aria-hidden="true"></span>
+            </div>
+            <span class="intro__studio">STUDIO</span>
+          </div>
+
+          <p class="intro__slogan" id="intro-slogan" aria-label="Everything creative. Built to sell.">
+            <span class="intro__line" aria-hidden="true">
+              <span class="intro__word" data-word>Everything</span>
+              <span class="intro__word" data-word>creative<span class="intro__text-period">.</span></span>
+            </span>
+            <span class="intro__line" aria-hidden="true">
+              <span class="intro__word" data-word>Built</span>
+              <span class="intro__word" data-word>to</span>
+              <span class="intro__word intro__word--serif" data-word>sell<span class="intro__period" id="intro-period"></span></span>
+            </span>
+          </p>
+        </div>
+
+        <span class="intro__fly-dot" id="intro-fly-dot" aria-hidden="true"></span>
+
+        <button type="button" class="intro__skip" id="intro-skip" data-i18n="intro.skip">Saltar</button>
       </div>
 
-      <div class="grain" aria-hidden="true"></div>
+      <div class="rail" aria-hidden="true"><i data-rail-dot></i></div>
 
       <header class="nav" data-nav>
-        <a class="nav__mark" href="#hero">
-          <img src="/brand/penta-mark-new.png" alt="" width="40" height="38" />
-          Penta<span class="nav__by">Studio</span>
+        <a class="nav__brand" href="#hero" aria-label="Penta Studio">
+          <img src="/brand/wordmark-dark.png" alt="penta." width="1000" height="335" />
+          <span class="nav__studio">STUDIO</span>
         </a>
-        <nav class="nav__links">
-          <a href="#showcase" data-i18n="nav.work">Trabajo</a>
-          <a href="#capabilities" data-i18n="nav.capabilities">Capacidades</a>
-          <a href="#manuals" data-i18n="nav.manuals">Manuales</a>
+        <nav class="nav__links" aria-label="Principal">
+          <a href="#services" data-i18n="nav.services">Servicios</a>
+          <a href="#cases" data-i18n="nav.cases">Casos</a>
+          <a href="#work" data-i18n="nav.work">Trabajo</a>
+          <a href="#values" data-i18n="nav.values">Valores</a>
         </nav>
         <div class="nav__actions">
-          <a class="nav__cta" href="#final" data-i18n="nav.cta">Iniciar un proyecto</a>
-          <button type="button" class="nav__lang" data-lang-toggle aria-label="Cambiar a inglés">
+          <button type="button" class="nav__lang" data-lang-toggle aria-label="Switch to English">
             <span data-lang-current>EN</span>
           </button>
+          <a class="btn btn--ink btn--sm" href="#final" data-i18n="nav.cta">Pedir propuesta</a>
         </div>
       </header>
 
       <main>
-        <!-- 1. HERO ANAMÓRFICO -->
-        <section id="hero" class="hero" data-section>
-          <div class="hero__stage">
-            <video
-              class="hero__video"
-              id="hero-video"
-              muted
-              playsinline
-              loop
-              preload="auto"
-              poster="/media/hero-poster.jpg"
-            >
-              <source src="/media/hero-desktop.webm" type="video/webm" />
-              <source src="/media/hero-desktop.mp4" type="video/mp4" />
-            </video>
-            <div class="hero__vignette"></div>
-            <div class="hero__grid" aria-hidden="true">
-              <span></span><span></span><span></span><span></span>
-            </div>
-          </div>
+        <!-- ============ 1. HERO ============ -->
+        <section id="hero" class="hero has-grain">
+          <div class="cloud cloud--hero" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
-          <div class="hero__frame">
-            <h1 class="hero__title">
-              <span class="hero__title-line" data-reveal data-i18n="hero.title.line1">Más allá</span>
-              <span class="hero__title-line hero__title-line--outline" data-reveal data-i18n="hero.title.line2">de la pantalla.</span>
+          <div class="hero__inner">
+            <p class="eyebrow hero__eyebrow" data-hero-fade>
+              <span class="eyebrow__dot"></span>Creative &amp; Experiential Studio
+            </p>
+
+            <h1 class="hero__title" id="hero-title" aria-label="Everything creative. Built to sell.">
+              <span class="hero__line" aria-hidden="true"><span class="hero__line-in" data-hero-line><span class="hw">Everything</span> <span class="hw">creative</span>.</span></span>
+              <span class="hero__line" aria-hidden="true"
+                ><span class="hero__line-in" data-hero-line><span class="hw">Built</span> <span class="hw">to</span> <em class="hw">sell</em><span class="hero__dot" id="hero-dot"></span></span
+              ></span>
+              <span class="hero__runner" id="hero-runner" aria-hidden="true"></span>
             </h1>
-            <p class="hero__subcopy" data-reveal data-i18n="hero.subcopy">
-              Contenido anamórfico diseñado para romper los límites de las pantallas tradicionales.
-            </p>
-          </div>
 
-          <div class="hero__scrollcue" aria-hidden="true">
-            <span></span>
-            <p data-i18n="hero.scroll">Scroll</p>
-          </div>
-        </section>
-
-        <!-- 2. INTRO / CONCEPT -->
-        <section id="concept" class="concept" data-section>
-          <div class="concept__top">
-            <p class="concept__eyebrow" data-i18n="concept.eyebrow">01 — Concepto</p>
-            <span class="concept__badge" data-i18n="concept.badge">Creative Studio 360°</span>
-          </div>
-          <h2 class="concept__statement">
-            <span data-i18n="concept.statement.line1">Diseñamos experiencias visuales</span>
-            <em data-i18n="concept.statement.line2">que no se quedan dentro de la pantalla.</em>
-          </h2>
-          <p class="concept__body" data-i18n="concept.body">
-            Contenido anamórfico para marcas, productos, retail, eventos, pantallas LED,
-            instalaciones y experiencias digitales — pensado para sentirse dimensional
-            desde un único punto de vista.
-          </p>
-          <div class="concept__tags" aria-hidden="true">
-            <span data-i18n="concept.tag.creative">Creative</span><span data-i18n="concept.tag.events">Events</span><span data-i18n="concept.tag.digital">Digital</span>
-            <span data-i18n="concept.tag.branding">Branding</span><span data-i18n="concept.tag.marketing">Marketing</span>
-          </div>
-        </section>
-
-        <!-- 3. SCROLL EXPERIENCE (video scrubbing) -->
-        <section id="scroll-experience" class="scroll-exp" data-section>
-          <div class="scroll-exp__pin" data-pin>
-            <div class="scroll-exp__media">
-              <video
-                class="scroll-exp__video"
-                id="scrub-video"
-                muted
-                playsinline
-                preload="auto"
-                poster="/media/scrub-poster.jpg"
-              >
-                <source src="/media/scrub-desktop.webm" type="video/webm" />
-                <source src="/media/scrub-desktop.mp4" type="video/mp4" />
-              </video>
-              <div class="scroll-exp__vignette"></div>
-            </div>
-
-            <div class="scroll-exp__copy">
-              <p class="scroll-exp__step" data-step="0">
-                <span class="scroll-exp__index">01</span> <span data-i18n="scrollexp.step0">Marketing Strategy &amp; Growth</span>
+            <div class="hero__bottom" data-hero-fade>
+              <p class="hero__sub" data-i18n="hero.sub">
+                Estrategia, marca, contenido, web y experiencias bajo una misma dirección, siempre con foco en ventas.
               </p>
-              <p class="scroll-exp__step" data-step="1">
-                <span class="scroll-exp__index">02</span> <span data-i18n="scrollexp.step1">Branding &amp; Dirección Creativa</span>
-              </p>
-              <p class="scroll-exp__step" data-step="2">
-                <span class="scroll-exp__index">03</span> <span data-i18n="scrollexp.step2">Diseño &amp; Contenido Audiovisual</span>
-              </p>
-              <p class="scroll-exp__step" data-step="3">
-                <span class="scroll-exp__index">04</span> <span data-i18n="scrollexp.step3">Eventos &amp; Activaciones</span>
-              </p>
-              <p class="scroll-exp__step" data-step="4">
-                <span class="scroll-exp__index">05</span> <span data-i18n="scrollexp.step4">Web &amp; Ecosistema Digital</span>
-              </p>
-            </div>
-
-            <div class="scroll-exp__progress" aria-hidden="true">
-              <i id="scrub-progress-fill"></i>
-            </div>
-          </div>
-        </section>
-
-        <!-- 2.5 BRAND MANUALS -->
-        <section id="manuals" class="manuals" data-section>
-          <p class="manuals__eyebrow" data-i18n="manuals.eyebrow">02 — Manuales de marca</p>
-          <div class="manuals__case">
-            <div class="manuals__info" data-reveal>
-              <div class="manuals__client-row">
-                <span class="manuals__client">TTE Group</span>
-                <span class="manuals__badge" data-i18n="manuals.tte.badge">Cuenta activa</span>
-              </div>
-              <h3 data-i18n="manuals.tte.title">Manual de marca</h3>
-              <p data-i18n="manuals.tte.desc">
-                Sistema de identidad completo para una empresa de energía y transformadores:
-                isologo, paleta, tipografía, usos correctos y piezas de comunicación aplicadas
-                a vía pública, gráfica y papelería.
-              </p>
-              <div class="manuals__tags" aria-hidden="true">
-                <span data-i18n="manuals.tag.identity">Identidad visual</span>
-                <span data-i18n="manuals.tag.system">Sistema gráfico</span>
-                <span data-i18n="manuals.tag.guidelines">Brand guidelines</span>
-                <span data-i18n="manuals.tag.applications">Aplicaciones de marca</span>
-              </div>
-              <p class="manuals__scope" data-i18n="manuals.tte.scope">
-                Hoy gestionamos la cuenta integral de TTE Group: piezas gráficas, rebranding,
-                comunicación institucional, señalética y merchandising.
-              </p>
-            </div>
-            <div class="manuals__gallery">
-              <img
-                class="manuals__img manuals__img--hero"
-                src="/media/manuals/tte-billboard.jpg"
-                alt="TTE Group — aplicación en vía pública"
-                loading="lazy"
-                data-reveal
-              />
-              <img
-                class="manuals__img"
-                src="/media/manuals/tte-brochure.jpg"
-                alt="TTE Group — folleto institucional"
-                loading="lazy"
-                data-reveal
-              />
-              <img
-                class="manuals__img"
-                src="/media/manuals/tte-forbidden.jpg"
-                alt="TTE Group — combinaciones prohibidas"
-                loading="lazy"
-                data-reveal
-              />
-              <img
-                class="manuals__img"
-                src="/media/manuals/tte-grayscale.jpg"
-                alt="TTE Group — escala de grises"
-                loading="lazy"
-                data-reveal
-              />
-            </div>
-          </div>
-        </section>
-
-        <!-- 3.5 RESULTS -->
-        <section id="results" class="results" data-section>
-          <p class="results__eyebrow" data-i18n="results.eyebrow">03 — Resultados</p>
-
-          <div class="results__headline">
-            <p class="results__case-eyebrow">
-              <span class="results__case-eyebrow-dot"></span>
-              <span data-i18n="results.case.eyebrow">Caso de éxito · Fábrica de calzado mayorista</span>
-            </p>
-
-            <h2 class="results__title">
-              <span data-i18n="results.title.line1">Resultados que se pueden medir:</span>
-              <em data-i18n="results.title.line2">30% de la facturación.</em>
-            </h2>
-
-            <p class="results__case-subhead" data-i18n="results.case.subhead">
-              Cómo la inversión en publicidad y nuestro servicio se convirtieron en clientes nuevos y en casi un tercio de la facturación de una fábrica.
-            </p>
-          </div>
-
-          <div class="results__feature" data-reveal>
-            <p class="results__feature-eyebrow" data-i18n="results.feature.eyebrow">Caso destacado — Bases Balc</p>
-            <div class="results__feature-main">
-              <span class="results__feature-label" data-i18n="results.feature.label">
-                La facturación de la fábrica que llega hoy de clientes captados con pauta digital pasó del 2% al 30% en 14 meses de gestión (ago. 2025 → sep. 2026). Arrancó siendo casi nula y hoy es casi un tercio de la venta total.
-              </span>
-            </div>
-            <ul class="results__feature-chips">
-              <li class="results__feature-chip" data-i18n="results.feature.chip1">+61% seguidores en Facebook en el último año</li>
-              <li class="results__feature-chip" data-i18n="results.feature.chip2">+67% seguidores en Instagram desde enero</li>
-              <li class="results__feature-chip" data-i18n="results.feature.chip3">×6,6 en visualizaciones de Instagram</li>
-            </ul>
-
-            <button
-              type="button"
-              class="results__feature-toggle"
-              data-results-toggle
-              aria-expanded="false"
-              aria-controls="results-detail"
-            >
-              <span data-i18n="results.feature.toggle.show">Ver el caso completo</span>
-              <svg class="results__feature-toggle-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M2 5L7 10L12 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
-
-            <div class="results__detail" id="results-detail" data-results-detail>
-              <div class="results__detail-inner">
-                <div class="results__chart" data-reveal>
-                  <p class="results__chart-title" data-i18n="results.chart.title">
-                    Los clientes de la pauta ya son el 30% de la venta
-                  </p>
-                  <p class="results__chart-caption" data-i18n="results.chart.caption">
-                    Facturación de clientes captados por la pauta sobre la venta total de la fábrica, mes a mes.
-                  </p>
-                  <div class="results__chart-scroll">
-                    <div class="results__bars">
-                      <div class="results__bar" style="--h: 6.1%">
-                        <span class="results__bar-value">2%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Ago 25</span>
-                      </div>
-                      <div class="results__bar" style="--h: 27.3%">
-                        <span class="results__bar-value">9%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Sep 25</span>
-                      </div>
-                      <div class="results__bar" style="--h: 18.2%">
-                        <span class="results__bar-value">6%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Oct 25</span>
-                      </div>
-                      <div class="results__bar" style="--h: 12.1%">
-                        <span class="results__bar-value">4%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Nov 25</span>
-                      </div>
-                      <div class="results__bar" style="--h: 24.2%">
-                        <span class="results__bar-value">8%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Dic 25</span>
-                      </div>
-                      <div class="results__bar" style="--h: 27.3%">
-                        <span class="results__bar-value">9%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Ene 26</span>
-                      </div>
-                      <div class="results__bar" style="--h: 54.5%">
-                        <span class="results__bar-value">18%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Feb 26</span>
-                      </div>
-                      <div class="results__bar" style="--h: 57.6%">
-                        <span class="results__bar-value">19%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Mar 26</span>
-                      </div>
-                      <div class="results__bar is-scaled" style="--h: 63.6%">
-                        <span class="results__bar-value">21%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Abr 26</span>
-                      </div>
-                      <div class="results__bar is-scaled" style="--h: 78.8%">
-                        <span class="results__bar-value">26%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">May 26</span>
-                      </div>
-                      <div class="results__bar is-scaled" style="--h: 100%">
-                        <span class="results__bar-value">33%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Jun 26</span>
-                      </div>
-                      <div class="results__bar is-scaled" style="--h: 97%">
-                        <span class="results__bar-value">32%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Jul 26</span>
-                      </div>
-                      <div class="results__bar is-scaled" style="--h: 84.8%">
-                        <span class="results__bar-value">28%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Ago 26</span>
-                      </div>
-                      <div class="results__bar is-scaled" style="--h: 90.9%">
-                        <span class="results__bar-value">30%</span>
-                        <span class="results__bar-fill"></span>
-                        <span class="results__bar-month">Sep 26</span>
-                      </div>
-                    </div>
-                  </div>
-                  <ul class="results__chart-legend">
-                    <li><span class="results__legend-dot"></span><span data-i18n="results.chart.legend1">Antes de escalar la pauta</span></li>
-                    <li><span class="results__legend-dot is-scaled"></span><span data-i18n="results.chart.legend2">Con la pauta ya escalada</span></li>
-                  </ul>
-                </div>
-
-                <div class="results__stat-group" data-reveal>
-                  <h3 class="results__stat-group-title" data-i18n="results.group1.title">231 clientes nuevos en 14 meses</h3>
-                  <div class="results__stat-row">
-                    <div class="results__stat">
-                      <span class="results__stat-num">-82%</span>
-                      <span class="results__stat-label" data-i18n="results.group1.stat1">costo por cliente nuevo</span>
-                    </div>
-                    <div class="results__stat">
-                      <span class="results__stat-num">45</span>
-                      <span class="results__stat-label" data-i18n="results.group1.stat2">clientes nuevos en un solo mes</span>
-                    </div>
-                    <div class="results__stat">
-                      <span class="results__stat-num">29%</span>
-                      <span class="results__stat-label" data-i18n="results.group1.stat3">de los nuevos ya volvió a comprar</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="results__stat-group" data-reveal>
-                  <h3 class="results__stat-group-title" data-i18n="results.group2.title">Cada peso invertido volvió multiplicado</h3>
-                  <div class="results__stat-row">
-                    <div class="results__stat">
-                      <span class="results__stat-num">×46</span>
-                      <span class="results__stat-label" data-i18n="results.group2.stat1">en ventas por cada $1 invertido en publicidad</span>
-                    </div>
-                    <div class="results__stat">
-                      <span class="results__stat-num">×16</span>
-                      <span class="results__stat-label" data-i18n="results.group2.stat2">en ventas por cada $1 de inversión total, servicio incluido</span>
-                    </div>
-                    <div class="results__stat">
-                      <span class="results__stat-num">6%</span>
-                      <span class="results__stat-label" data-i18n="results.group2.stat3">de lo facturado es lo que cuesta la pauta completa</span>
-                    </div>
-                  </div>
-                  <p class="results__stat-note" data-i18n="results.group2.note">
-                    Abril a septiembre 2026. Si el margen de la fábrica supera el 6%, la pauta deja ganancia desde el primer peso.
-                  </p>
-                </div>
-
-                <div class="results__stat-group" data-reveal>
-                  <h3 class="results__stat-group-title" data-i18n="results.group3.title">La venta creció aun con el resto del mercado en baja</h3>
-                  <div class="results__stat-row">
-                    <div class="results__stat">
-                      <span class="results__stat-num">+18%</span>
-                      <span class="results__stat-label" data-i18n="results.group3.stat1">venta total de la fábrica, abril a septiembre contra el mismo período de 2025</span>
-                    </div>
-                    <div class="results__stat">
-                      <span class="results__stat-num">×8,9</span>
-                      <span class="results__stat-label" data-i18n="results.group3.stat2">facturación de los clientes que llegaron por la pauta</span>
-                    </div>
-                    <div class="results__stat">
-                      <span class="results__stat-num">−11%</span>
-                      <span class="results__stat-label" data-i18n="results.group3.stat3">el resto de los clientes, sin contar la pauta</span>
-                    </div>
-                  </div>
-                  <p class="results__stat-note" data-i18n="results.group3.note">
-                    El crecimiento del año vino de los clientes nuevos. Sin la pauta, la fábrica habría vendido menos que el año anterior.
-                  </p>
-                </div>
-
-                <button type="button" class="results__feature-toggle results__feature-toggle--close" data-results-toggle>
-                  <span data-i18n="results.feature.toggle.hide">Ocultar el caso completo</span>
-                  <svg class="results__feature-toggle-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 5L7 10L12 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </button>
+              <div class="hero__ctas">
+                <a class="btn btn--ink" href="#final" data-i18n="hero.cta1">Hablemos de tu negocio</a>
+                <a class="btn btn--ghost" href="#cases" data-i18n="hero.cta2">Ver casos</a>
               </div>
             </div>
-          </div>
 
-          <ul class="results__grid">
-            <li class="results__item" data-reveal>
-              <span class="results__number" data-i18n="accounts.bases.stat">1.909 seguidores</span>
-              <span class="results__account">Bases Balc</span>
-              <span class="results__desc" data-i18n="accounts.bases.desc">Calzados y sandalias mayoristas</span>
-            </li>
-          </ul>
+            <p class="hero__cue" data-hero-fade aria-hidden="true"><span class="hero__cue-dot"></span><span data-i18n="hero.scroll">Scroll</span></p>
+          </div>
         </section>
 
-        <!-- 3b. CLIENTS (gray logo marquee) -->
-        <section id="clients" class="clients" data-section aria-labelledby="clients-label">
+        <!-- ============ 2. CLIENTS MARQUEE ============ -->
+        <section id="clients" class="clients" aria-labelledby="clients-label">
           <p id="clients-label" class="clients__label" data-i18n="clients.label">Marcas que confían</p>
           <div class="clients__marquee">
             <div class="clients__track">
-            <ul class="clients__group">
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/tte-group.png" alt="TTE Group" width="620" height="300" style="--h:54" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/geely.png" alt="Geely" width="288" height="155" style="--h:48" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/bases-balc.png" alt="Bases Balc" width="537" height="278" style="--h:50" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/san-juan-turismo.png" alt="San Juan Turismo" width="801" height="245" style="--h:44" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/byd.png" alt="BYD" width="540" height="103" style="--h:24" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/green-hills.png" alt="Green Hills" width="318" height="221" style="--h:58" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/tecnoimagen.png" alt="Tecnoimagen" width="624" height="54" style="--h:20" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/puerto-madryn.png" alt="Puerto Madryn" width="419" height="143" style="--h:56" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/dragon-crepes.png" alt="Dragon Crepes" width="300" height="300" style="--h:80" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/vacalin.png" alt="Vacalin" width="263" height="55" style="--h:30" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/la-tranquera.png" alt="La Tranquera" width="351" height="121" style="--h:44" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/malvinas-argentinas.png" alt="Municipio de Malvinas Argentinas" width="156" height="300" style="--h:66" loading="lazy" decoding="async" /></li>
-            </ul>
-            <ul class="clients__group" aria-hidden="true">
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/tte-group.png" alt="" width="620" height="300" style="--h:54" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/geely.png" alt="" width="288" height="155" style="--h:48" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/bases-balc.png" alt="" width="537" height="278" style="--h:50" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/san-juan-turismo.png" alt="" width="801" height="245" style="--h:44" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/byd.png" alt="" width="540" height="103" style="--h:24" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/green-hills.png" alt="" width="318" height="221" style="--h:58" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/tecnoimagen.png" alt="" width="624" height="54" style="--h:20" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/puerto-madryn.png" alt="" width="419" height="143" style="--h:56" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/dragon-crepes.png" alt="" width="300" height="300" style="--h:80" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/vacalin.png" alt="" width="263" height="55" style="--h:30" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/la-tranquera.png" alt="" width="351" height="121" style="--h:44" loading="lazy" decoding="async" /></li>
-              <li class="clients__item"><img class="clients__logo" src="./public/media/clients/malvinas-argentinas.png" alt="" width="156" height="300" style="--h:66" loading="lazy" decoding="async" /></li>
-            </ul>
+              <ul class="clients__group">
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/tte-group.png" alt="TTE Group" width="620" height="300" style="--h:54" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/geely.png" alt="Geely" width="288" height="155" style="--h:48" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/bases-balc.png" alt="Bases Balc" width="537" height="278" style="--h:50" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/san-juan-turismo.png" alt="San Juan Turismo" width="801" height="245" style="--h:44" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/byd.png" alt="BYD" width="540" height="103" style="--h:24" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/green-hills.png" alt="Green Hills" width="318" height="221" style="--h:58" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/tecnoimagen.png" alt="Tecnoimagen" width="624" height="54" style="--h:20" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/puerto-madryn.png" alt="Puerto Madryn" width="419" height="143" style="--h:56" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/dragon-crepes.png" alt="Dragon Crepes" width="300" height="300" style="--h:80" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/vacalin.png" alt="Vacalin" width="263" height="55" style="--h:30" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/la-tranquera.png" alt="La Tranquera" width="351" height="121" style="--h:44" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/malvinas-argentinas.png" alt="Municipio de Malvinas Argentinas" width="156" height="300" style="--h:66" loading="lazy" decoding="async" /></li>
+              </ul>
+              <ul class="clients__group" aria-hidden="true">
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/tte-group.png" alt="" width="620" height="300" style="--h:54" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/geely.png" alt="" width="288" height="155" style="--h:48" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/bases-balc.png" alt="" width="537" height="278" style="--h:50" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/san-juan-turismo.png" alt="" width="801" height="245" style="--h:44" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/byd.png" alt="" width="540" height="103" style="--h:24" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/green-hills.png" alt="" width="318" height="221" style="--h:58" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/tecnoimagen.png" alt="" width="624" height="54" style="--h:20" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/puerto-madryn.png" alt="" width="419" height="143" style="--h:56" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/dragon-crepes.png" alt="" width="300" height="300" style="--h:80" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/vacalin.png" alt="" width="263" height="55" style="--h:30" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/la-tranquera.png" alt="" width="351" height="121" style="--h:44" loading="lazy" decoding="async" /></li>
+                <li class="clients__item"><img class="clients__logo" src="/media/clients/malvinas-argentinas.png" alt="" width="156" height="300" style="--h:66" loading="lazy" decoding="async" /></li>
+              </ul>
             </div>
           </div>
         </section>
 
-        <!-- 4. PRODUCT GALLERY (editorial photo collage) -->
-        <section id="gallery" class="product-gallery" data-section>
-          <div class="product-gallery__head" data-reveal>
-            <p class="product-gallery__eyebrow" data-i18n="gallery.eyebrow">04 — Producto en foco</p>
-            <h2 class="product-gallery__title">
-              <span data-i18n="gallery.title.line1">Fotografía de producto:</span>
-              <em data-i18n="gallery.title.line2">Street.</em>
+        <!-- ============ 3. GROWTH PARTNER ============ -->
+        <section id="partner" class="section partner">
+          <div class="container">
+            <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span>Growth partner</p>
+            <h2 class="h2 partner__title" data-mask>
+              <span data-i18n="partner.title1">Otras agencias piensan cómo se ve una marca.</span>
+              <em data-i18n="partner.title2">Nosotros, cómo factura.</em>
             </h2>
-            <p class="product-gallery__desc" data-i18n="gallery.desc">
-              Fotografía de producto pensada para moverse: en la calle, en la pauta, en el feed.
-              Así se ve una pieza cuando no se queda quieta en un catálogo.
+            <p class="lead" data-reveal data-i18n="partner.lead">
+              Entendemos tu negocio y ejecutamos, online u offline, para aumentar tu facturación y ayudarte a escalar.
             </p>
-          </div>
 
-          <div class="product-gallery__track-wrap">
-            <div class="product-gallery__track" id="gallery-track">
-              <div class="product-gallery__cell" data-reveal>
-                <img src="/media/gallery/gallery-1.jpg" alt="" loading="lazy" />
-              </div>
-              <div class="product-gallery__cell" data-reveal>
-                <img src="/media/gallery/gallery-2.jpg" alt="" loading="lazy" />
-              </div>
-              <div class="product-gallery__cell product-gallery__cell--feature" data-reveal>
-                <img src="/media/gallery/gallery-3.jpg" alt="" loading="lazy" />
-              </div>
-              <div class="product-gallery__cell" data-reveal>
-                <img src="/media/gallery/gallery-4.jpg" alt="" loading="lazy" />
-              </div>
-              <div class="product-gallery__cell" data-reveal>
-                <img src="/media/gallery/gallery-5.jpg" alt="" loading="lazy" />
+            <div class="partner__cards">
+              <article class="card card--peach has-grain" data-reveal>
+                <span class="card__num">01</span>
+                <h3 data-i18n="partner.c1.title">Parte de tu equipo</h3>
+                <p data-i18n="partner.c1.desc">Nos metemos a fondo en tu negocio y trabajamos como parte de tu equipo. No somos un proveedor más.</p>
+              </article>
+              <article class="card card--lavender has-grain" data-reveal>
+                <span class="card__num">02</span>
+                <h3 data-i18n="partner.c2.title">El paid media es el motor</h3>
+                <p data-i18n="partner.c2.desc">Primero para que te conozcan y después para que te compren. Cada acción se diseña para generar más leads y más ventas.</p>
+              </article>
+              <article class="card card--sky has-grain" data-reveal>
+                <span class="card__num">03</span>
+                <h3 data-i18n="partner.c3.title">De la estrategia a la ejecución</h3>
+                <p data-i18n="partner.c3.desc">Todo lo creativo, un solo estudio: un único interlocutor, orden y resultados medibles en cada punto de contacto.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 4. FOCO — story that unfolds with the scroll ============ -->
+        <section id="story" class="story" data-story>
+          <div class="story__pin" data-story-pin>
+            <div class="container story__container">
+              <div class="story__panel">
+                <div class="story__copy">
+                  <p class="eyebrow"><span class="eyebrow__dot"></span>Foco</p>
+                  <div class="story__steps">
+                    <div class="story__step" data-step>
+                      <h2 class="story__title"><span data-i18n="story.s1.t1">Todo empieza</span> <em data-i18n="story.s1.t2">difuso.</em></h2>
+                      <p data-i18n="story.s1.p">Un negocio, una marca, mil ideas sueltas.</p>
+                    </div>
+                    <div class="story__step" data-step>
+                      <h2 class="story__title"><span data-i18n="story.s2.t1">Primero,</span> <em data-i18n="story.s2.t2">estrategia.</em></h2>
+                      <p data-i18n="story.s2.p">Estudio de mercado, posicionamiento y diagnóstico.</p>
+                    </div>
+                    <div class="story__step" data-step>
+                      <h2 class="story__title"><span data-i18n="story.s3.t1">Después,</span> <em data-i18n="story.s3.t2">creatividad.</em></h2>
+                      <p data-i18n="story.s3.p">Marca, contenido, web y experiencias.</p>
+                    </div>
+                    <div class="story__step" data-step>
+                      <h2 class="story__title"><span data-i18n="story.s4.t1">Y lo ponemos a</span> <em data-i18n="story.s4.t2">rendir.</em></h2>
+                      <p data-i18n="story.s4.p">Paid media, leads y automatizaciones.</p>
+                    </div>
+                    <div class="story__step" data-step>
+                      <h2 class="story__title"><span data-i18n="story.s5.t1">Hasta que queda</span> <em data-i18n="story.s5.t2">nítido.</em></h2>
+                      <p data-i18n="story.s5.p">Lo difuso es la creatividad. Lo nítido, el resultado.</p>
+                      <p class="story__tag">Creative energy, focused on sales.</p>
+                    </div>
+                  </div>
+                  <div class="story__progress" aria-hidden="true"><i data-story-bar></i></div>
+                </div>
+
+                <div class="story__visual" aria-hidden="true">
+                  <div class="story__cloud" data-story-cloud>
+                    <i style="--bg: var(--peach)"></i>
+                    <i style="--bg: var(--pink)"></i>
+                    <i style="--bg: var(--lavender)"></i>
+                    <i style="--bg: var(--sky)"></i>
+                    <i style="--bg: var(--yellow)"></i>
+                  </div>
+                  <span class="story__ring story__ring--1"></span>
+                  <span class="story__ring story__ring--2"></span>
+                  <span class="story__dot" data-story-dot></span>
+                </div>
               </div>
             </div>
           </div>
+        </section>
 
-          <div class="product-gallery__nav">
-            <button class="product-gallery__arrow" id="gallery-prev" type="button" aria-label="Anterior">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            </button>
-            <button class="product-gallery__arrow" id="gallery-next" type="button" aria-label="Siguiente">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            </button>
+        <!-- ============ 4b. BEYOND THE SCREEN (video) ============ -->
+        <section id="beyond" class="beyond" data-beyond>
+          <div class="beyond__pin" data-beyond-pin>
+            <div class="beyond__frame" data-beyond-frame>
+              <video
+                class="beyond__video"
+                id="beyond-video"
+                muted
+                playsinline
+                loop
+                preload="none"
+                poster="/media/hero-poster.jpg"
+                data-big-video
+                data-src-desktop="./media/hero-desktop.mp4"
+                data-src-mobile="./media/hero-mobile.mp4"
+              ></video>
+              <div class="beyond__scrim"></div>
+            </div>
+            <div class="beyond__label" data-beyond-label aria-hidden="true">
+              <span data-i18n="beyond.eyebrow">Más allá de la pantalla</span>
+            </div>
+            <div class="beyond__card" data-beyond-card>
+              <p class="eyebrow"><span class="eyebrow__dot"></span><span data-i18n="beyond.eyebrow">Más allá de la pantalla</span></p>
+              <h2 class="beyond__title">
+                <span data-i18n="beyond.title1">Creatividad que se sale</span>
+                <em data-i18n="beyond.title2">de la pantalla.</em>
+              </h2>
+              <p class="beyond__text" data-i18n="beyond.text">Contenido para pantallas LED, retail, eventos e instalaciones.</p>
+              <ul class="tags">
+                <li data-i18n="beyond.tag1">Pantallas LED</li>
+                <li data-i18n="beyond.tag2">Retail</li>
+                <li data-i18n="beyond.tag3">Eventos</li>
+                <li data-i18n="beyond.tag4">Instalaciones</li>
+              </ul>
+            </div>
           </div>
         </section>
 
-        <!-- 4.75 FEATURED MOTION PIECE -->
-        <section id="motion-feature" class="motion-feature" data-section>
-          <p class="motion-feature__eyebrow" data-i18n="motionFeature.eyebrow">05 — Pieza destacada</p>
-          <div class="motion-feature__frame" data-reveal>
-            <video class="motion-feature__video" muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-6-poster.jpg">
-              <source data-src="./media/showcase-6.webm" type="video/webm" />
-              <source data-src="./media/showcase-6.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="motion-feature__caption">
-            <h2 data-i18n="motionFeature.title">Producto médico · Motion 3D</h2>
-            <p data-i18n="motionFeature.desc">
-              Render y animación de producto pensados para comunicación institucional, con foco en claridad técnica y
-              precisión visual.
-            </p>
-          </div>
-        </section>
-
-        <!-- 4.5 PANORAMIC REEL (full-bleed anamorphic showreel) -->
-        <section id="reel" class="reel" data-section>
-          <div class="reel__frame" data-reveal>
-            <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/reel-poster.jpg">
-              <source data-src="./media/reel.webm" type="video/webm" />
-              <source data-src="./media/reel.mp4" type="video/mp4" />
-            </video>
+        <!-- ============ 4c. 3D EQUIPMENT (assembles on scroll, spins with the mouse) ============ -->
+        <section id="t3d" class="t3d" data-t3d>
+          <div class="t3d__pin" data-t3d-pin>
+            <div class="t3d__bg cloud" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="t3d__canvas" data-t3d-canvas></div>
+            <img class="t3d__poster" src="./media/3d/poster.webp" alt="Transformador 3D" width="702" height="497" loading="lazy" />
+            <div class="t3d__copy">
+              <p class="eyebrow" data-t3d-fade><span class="eyebrow__dot"></span><span data-i18n="t3d.eyebrow">Experiencias 3D</span></p>
+              <h2 class="t3d__title" data-t3d-fade>
+                <span data-i18n="t3d.title1">Se arma ante tus ojos.</span>
+                <em data-i18n="t3d.title2">Y lo girás vos.</em>
+              </h2>
+              <p class="t3d__lead" data-t3d-fade data-i18n="t3d.lead">Modelos 3D interactivos para mostrar equipos complejos en ferias, web y presentaciones: pieza por pieza, desde cualquier ángulo.</p>
+            </div>
+            <div class="t3d__ui">
+              <p class="t3d__hint" aria-hidden="true"><span class="t3d__hand"></span><span data-i18n="t3d.hint">Arrastrá para girarlo</span></p>
+              <div class="t3d__picker" role="group" aria-label="Modelo">
+                <button type="button" data-t3d-pick="t40">40 MVA</button>
+                <button type="button" data-t3d-pick="t208" class="is-on">208 MVA</button>
+                <button type="button" data-t3d-pick="t230">230 kV</button>
+              </div>
+            </div>
+            <div class="t3d__loading" aria-hidden="true"><i></i></div>
           </div>
         </section>
 
-        <!-- 5. SHOWCASE -->
-        <section id="showcase" class="showcase" data-section>
-          <div class="showcase__pin" data-pin>
-            <p class="showcase__eyebrow" data-i18n="showcase.eyebrow">06 — Trabajos seleccionados</p>
-            <div class="showcase__track" id="showcase-track">
-              <article class="showcase__item">
-                <div class="showcase__media showcase__media--video">
-                  <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-reel-poster.jpg">
-                    <source data-src="./media/showcase-reel.webm" type="video/webm" />
-                    <source data-src="./media/showcase-reel.mp4" type="video/mp4" />
-                  </video>
+        <!-- ============ 4c. RIBBON ============ -->
+        <section class="ribbon" aria-hidden="true">
+          <div class="ribbon__row" data-ribbon="-1">
+            <span>Estrategia</span><i style="--c: var(--ink)"></i><span>Brand</span><i style="--c: var(--peach)"></i><span>Growth</span><i style="--c: var(--pink)"></i><span>Content</span><i style="--c: var(--lavender)"></i><span>Web</span><i style="--c: var(--sky)"></i><span>Experiences</span><i style="--c: var(--yellow)"></i>
+            <span>Estrategia</span><i style="--c: var(--ink)"></i><span>Brand</span><i style="--c: var(--peach)"></i><span>Growth</span><i style="--c: var(--pink)"></i><span>Content</span><i style="--c: var(--lavender)"></i><span>Web</span><i style="--c: var(--sky)"></i><span>Experiences</span><i style="--c: var(--yellow)"></i>
+          </div>
+          <div class="ribbon__row ribbon__row--serif" data-ribbon="1">
+            <span>Everything creative</span><i style="--c: var(--pink)"></i><span>Built to sell</span><i style="--c: var(--sky)"></i><span>Everything creative</span><i style="--c: var(--peach)"></i><span>Built to sell</span><i style="--c: var(--lavender)"></i>
+            <span>Everything creative</span><i style="--c: var(--pink)"></i><span>Built to sell</span><i style="--c: var(--sky)"></i><span>Everything creative</span><i style="--c: var(--peach)"></i><span>Built to sell</span><i style="--c: var(--lavender)"></i>
+          </div>
+        </section>
+
+        <!-- ============ 5. SERVICES ============ -->
+        <section id="services" class="section services">
+          <div class="container">
+            <div class="section__head">
+              <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span><span data-i18n="services.eyebrow">Qué hacemos</span></p>
+              <h2 class="h2" data-mask>
+                <span data-i18n="services.title1">Seis pilares,</span>
+                <em data-i18n="services.title2">una sola dirección.</em>
+              </h2>
+            </div>
+
+            <ul class="services__list">
+              <li class="service" style="--c: var(--ink)" data-reveal>
+                <span class="service__name"><i class="service__dot"></i>Estrategia</span>
+                <p data-i18n="services.s1">Estudio de mercado, posicionamiento y diagnóstico. El punto de partida.</p>
+              </li>
+              <li class="service" style="--c: var(--peach)" data-reveal>
+                <span class="service__name"><i class="service__dot"></i>Brand</span>
+                <p data-i18n="services.s2">Estrategia de marca, identidad y brand books.</p>
+              </li>
+              <li class="service" style="--c: var(--pink)" data-reveal>
+                <span class="service__name"><i class="service__dot"></i>Growth</span>
+                <p data-i18n="services.s3">Paid media, generación de leads, automatizaciones y bases de datos.</p>
+              </li>
+              <li class="service" style="--c: var(--lavender)" data-reveal>
+                <span class="service__name"><i class="service__dot"></i>Content</span>
+                <p data-i18n="services.s4">Comerciales, audiovisual y contenido para redes.</p>
+              </li>
+              <li class="service" style="--c: var(--sky)" data-reveal>
+                <span class="service__name"><i class="service__dot"></i>Web</span>
+                <p data-i18n="services.s5">Sitios, landings y e-commerce.</p>
+              </li>
+              <li class="service" style="--c: var(--yellow)" data-reveal>
+                <span class="service__name"><i class="service__dot"></i>Experiences</span>
+                <p data-i18n="services.s6">Stands, eventos, pop-ups, ferias y activaciones.</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============ 6. CASES ============ -->
+        <section id="cases" class="section cases">
+          <div class="container">
+            <!-- Proof band: Bases Balc -->
+            <div class="proof has-grain" data-reveal>
+              <div class="cloud cloud--proof" aria-hidden="true"><i></i><i></i><i></i></div>
+              <p class="proof__eyebrow">
+                <span class="eyebrow__dot"></span>
+                <span data-i18n="results.feature.eyebrow">Caso destacado — Bases Balc</span>
+              </p>
+              <p class="proof__big"><span><b data-count="2">2</b>%</span><i aria-hidden="true">→</i><span><b data-count="30">30</b>%</span></p>
+              <p class="proof__text" data-i18n="results.feature.label">
+                La facturación de la fábrica que llega hoy de clientes captados con pauta digital pasó del 2% al 30% en 14 meses de gestión.
+              </p>
+              <ul class="proof__chips">
+                <li data-i18n="results.feature.chip1">+61% seguidores en Facebook en el último año</li>
+                <li data-i18n="results.feature.chip2">+67% seguidores en Instagram desde enero</li>
+                <li data-i18n="results.feature.chip3">×6,6 en visualizaciones de Instagram</li>
+              </ul>
+
+              <button type="button" class="proof__toggle" data-results-toggle aria-expanded="false" aria-controls="results-detail">
+                <span data-i18n="results.feature.toggle.show">Ver el caso completo</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5L7 10L12 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </button>
+
+              <div class="detail" id="results-detail" data-results-detail>
+                <div class="detail__inner">
+                  <div class="chart">
+                    <p class="chart__title" data-i18n="results.chart.title">Los clientes de la pauta ya son el 30% de la venta</p>
+                    <p class="chart__caption" data-i18n="results.chart.caption">Facturación de clientes captados por la pauta sobre la venta total de la fábrica, mes a mes.</p>
+                    <div class="chart__scroll">
+                      <div class="bars">
+                        <div class="bar" style="--h:6.1%;--i:0"><span class="bar__track"><i class="bar__fill"><b>2%</b></i></span><span class="bar__m">Ago 25</span></div>
+                        <div class="bar" style="--h:27.3%;--i:1"><span class="bar__track"><i class="bar__fill"><b>9%</b></i></span><span class="bar__m">Sep 25</span></div>
+                        <div class="bar" style="--h:18.2%;--i:2"><span class="bar__track"><i class="bar__fill"><b>6%</b></i></span><span class="bar__m">Oct 25</span></div>
+                        <div class="bar" style="--h:12.1%;--i:3"><span class="bar__track"><i class="bar__fill"><b>4%</b></i></span><span class="bar__m">Nov 25</span></div>
+                        <div class="bar" style="--h:24.2%;--i:4"><span class="bar__track"><i class="bar__fill"><b>8%</b></i></span><span class="bar__m">Dic 25</span></div>
+                        <div class="bar" style="--h:27.3%;--i:5"><span class="bar__track"><i class="bar__fill"><b>9%</b></i></span><span class="bar__m">Ene 26</span></div>
+                        <div class="bar" style="--h:54.5%;--i:6"><span class="bar__track"><i class="bar__fill"><b>18%</b></i></span><span class="bar__m">Feb 26</span></div>
+                        <div class="bar" style="--h:57.6%;--i:7"><span class="bar__track"><i class="bar__fill"><b>19%</b></i></span><span class="bar__m">Mar 26</span></div>
+                        <div class="bar is-scaled" style="--h:63.6%;--i:8"><span class="bar__track"><i class="bar__fill"><b>21%</b></i></span><span class="bar__m">Abr 26</span></div>
+                        <div class="bar is-scaled" style="--h:78.8%;--i:9"><span class="bar__track"><i class="bar__fill"><b>26%</b></i></span><span class="bar__m">May 26</span></div>
+                        <div class="bar is-scaled" style="--h:100%;--i:10"><span class="bar__track"><i class="bar__fill"><b>33%</b></i></span><span class="bar__m">Jun 26</span></div>
+                        <div class="bar is-scaled" style="--h:97%;--i:11"><span class="bar__track"><i class="bar__fill"><b>32%</b></i></span><span class="bar__m">Jul 26</span></div>
+                        <div class="bar is-scaled" style="--h:84.8%;--i:12"><span class="bar__track"><i class="bar__fill"><b>28%</b></i></span><span class="bar__m">Ago 26</span></div>
+                        <div class="bar is-scaled" style="--h:90.9%;--i:13"><span class="bar__track"><i class="bar__fill"><b>30%</b></i></span><span class="bar__m">Sep 26</span></div>
+                      </div>
+                    </div>
+                    <ul class="chart__legend">
+                      <li><i class="legend-dot"></i><span data-i18n="results.chart.legend1">Antes de escalar la pauta</span></li>
+                      <li><i class="legend-dot is-scaled"></i><span data-i18n="results.chart.legend2">Con la pauta ya escalada</span></li>
+                    </ul>
+                  </div>
+
+                  <div class="stat-group">
+                    <h3 data-i18n="results.group1.title">231 clientes nuevos en 14 meses</h3>
+                    <div class="stat-row">
+                      <div class="stat"><span class="stat__num">-82%</span><span class="stat__label" data-i18n="results.group1.stat1">costo por cliente nuevo</span></div>
+                      <div class="stat"><span class="stat__num">45</span><span class="stat__label" data-i18n="results.group1.stat2">clientes nuevos en un solo mes</span></div>
+                      <div class="stat"><span class="stat__num">29%</span><span class="stat__label" data-i18n="results.group1.stat3">de los nuevos ya volvió a comprar</span></div>
+                    </div>
+                  </div>
+
+                  <div class="stat-group">
+                    <h3 data-i18n="results.group2.title">Cada peso invertido volvió multiplicado</h3>
+                    <div class="stat-row">
+                      <div class="stat"><span class="stat__num">×46</span><span class="stat__label" data-i18n="results.group2.stat1">en ventas por cada $1 invertido en publicidad</span></div>
+                      <div class="stat"><span class="stat__num">×16</span><span class="stat__label" data-i18n="results.group2.stat2">en ventas por cada $1 de inversión total, servicio incluido</span></div>
+                      <div class="stat"><span class="stat__num">6%</span><span class="stat__label" data-i18n="results.group2.stat3">de lo facturado es lo que cuesta la pauta completa</span></div>
+                    </div>
+                    <p class="stat-note" data-i18n="results.group2.note">Abril a septiembre 2026.</p>
+                  </div>
+
+                  <div class="stat-group">
+                    <h3 data-i18n="results.group3.title">La venta creció aun con el resto del mercado en baja</h3>
+                    <div class="stat-row">
+                      <div class="stat"><span class="stat__num">+18%</span><span class="stat__label" data-i18n="results.group3.stat1">venta total de la fábrica, abril a septiembre contra el mismo período de 2025</span></div>
+                      <div class="stat"><span class="stat__num">×8,9</span><span class="stat__label" data-i18n="results.group3.stat2">facturación de los clientes que llegaron por la pauta</span></div>
+                      <div class="stat"><span class="stat__num">−11%</span><span class="stat__label" data-i18n="results.group3.stat3">el resto de los clientes, sin contar la pauta</span></div>
+                    </div>
+                    <p class="stat-note" data-i18n="results.group3.note">El crecimiento del año vino de los clientes nuevos.</p>
+                  </div>
+
+                  <button type="button" class="proof__toggle proof__toggle--close" data-results-toggle>
+                    <span data-i18n="results.feature.toggle.hide">Ocultar el caso completo</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5L7 10L12 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </button>
                 </div>
-                <div class="showcase__meta">
-                  <span class="showcase__num">01</span>
-                  <h3 data-i18n="showcase.item1.title">Reel anamórfico</h3>
-                  <p data-i18n="showcase.item1.desc">Piezas anamórficas seleccionadas · Compilado</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 7. WORK ============ -->
+        <section id="work" class="section work">
+          <div class="container">
+            <div class="section__head">
+              <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span><span data-i18n="work.eyebrow">Trabajo</span></p>
+              <h2 class="h2" data-mask>
+                <span data-i18n="work.title1">Ideas que se ven,</span>
+                <em data-i18n="work.title2">se mueven y se venden.</em>
+              </h2>
+            </div>
+
+            <!-- TTE manual -->
+            <div class="tte">
+              <div class="tte__info" data-reveal>
+                <p class="tte__client">TTE Group <span class="badge" data-i18n="manuals.tte.badge">Cuenta activa</span></p>
+                <h3 data-i18n="manuals.tte.title">Manual de marca</h3>
+                <p data-i18n="manuals.tte.desc">Sistema de identidad completo para una empresa de energía y transformadores.</p>
+                <ul class="tags">
+                  <li data-i18n="manuals.tag.identity">Identidad visual</li>
+                  <li data-i18n="manuals.tag.system">Sistema gráfico</li>
+                  <li data-i18n="manuals.tag.guidelines">Brand guidelines</li>
+                  <li data-i18n="manuals.tag.applications">Aplicaciones de marca</li>
+                </ul>
+                <p class="tte__scope" data-i18n="manuals.tte.scope">Hoy gestionamos la cuenta integral de TTE Group.</p>
+              </div>
+              <div class="tte__gallery">
+                <img class="tte__img tte__img--hero" src="/media/manuals/tte-billboard.jpg" alt="TTE Group — aplicación en vía pública" loading="lazy" data-reveal />
+                <img class="tte__img" src="/media/manuals/tte-brochure.jpg" alt="TTE Group — folleto institucional" loading="lazy" data-reveal />
+                <img class="tte__img" src="/media/manuals/tte-forbidden.jpg" alt="TTE Group — combinaciones prohibidas" loading="lazy" data-reveal />
+                <img class="tte__img" src="/media/manuals/tte-grayscale.jpg" alt="TTE Group — escala de grises" loading="lazy" data-reveal />
+              </div>
+            </div>
+
+            <!-- Product photography strip -->
+            <div class="block" data-strip-wrap>
+              <div class="block__head" data-reveal>
+                <div>
+                  <h3 class="h3">
+                    <span data-i18n="gallery.title.line1">Fotografía de producto:</span>
+                    <em data-i18n="gallery.title.line2">Street.</em>
+                  </h3>
+                  <p class="block__desc" data-i18n="gallery.desc">Fotografía de producto pensada para moverse: en la calle, en la pauta, en el feed.</p>
                 </div>
-              </article>
-              <article class="showcase__item">
-                <div class="showcase__media showcase__media--video showcase__media--wide">
-                  <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-4-poster.jpg">
-                    <source data-src="./media/showcase-4.webm" type="video/webm" />
-                    <source data-src="./media/showcase-4.mp4" type="video/mp4" />
-                  </video>
+                <div class="arrows">
+                  <button class="arrow" type="button" data-strip-prev aria-label="Anterior"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+                  <button class="arrow" type="button" data-strip-next aria-label="Siguiente"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
                 </div>
-                <div class="showcase__meta">
-                  <span class="showcase__num">02</span>
-                  <h3 data-i18n="showcase.item2.title">Institucional TTE Group</h3>
+              </div>
+              <div class="strip strip--photos" data-strip>
+                <figure class="strip__item"><img src="/media/gallery/gallery-1.jpg" alt="" loading="lazy" /></figure>
+                <figure class="strip__item"><img src="/media/gallery/gallery-2.jpg" alt="" loading="lazy" /></figure>
+                <figure class="strip__item strip__item--wide"><img src="/media/gallery/gallery-3.jpg" alt="" loading="lazy" /></figure>
+                <figure class="strip__item"><img src="/media/gallery/gallery-4.jpg" alt="" loading="lazy" /></figure>
+                <figure class="strip__item"><img src="/media/gallery/gallery-5.jpg" alt="" loading="lazy" /></figure>
+              </div>
+            </div>
+
+            <!-- Featured motion piece -->
+            <div class="motion" data-reveal>
+              <div class="motion__frame">
+                <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-6-poster.jpg">
+                  <source data-src="./media/showcase-6.webm" type="video/webm" />
+                  <source data-src="./media/showcase-6.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="motion__caption">
+                <h3 class="h3" data-i18n="motionFeature.title">Producto médico · Motion 3D</h3>
+                <p data-i18n="motionFeature.desc">Render y animación de producto pensados para comunicación institucional.</p>
+              </div>
+            </div>
+
+            <!-- Selected videos -->
+            <div class="block" data-strip-wrap>
+              <div class="block__head" data-reveal>
+                <h3 class="h3" data-i18n="showcase.title">Piezas seleccionadas</h3>
+                <div class="arrows">
+                  <button class="arrow" type="button" data-strip-prev aria-label="Anterior"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+                  <button class="arrow" type="button" data-strip-next aria-label="Siguiente"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+                </div>
+              </div>
+              <div class="strip strip--videos" data-strip>
+                <article class="strip__item">
+                  <div class="strip__media">
+                    <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-reel-poster.jpg">
+                      <source data-src="./media/showcase-reel.webm" type="video/webm" />
+                      <source data-src="./media/showcase-reel.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <h4 data-i18n="showcase.item1.title">Reel de piezas seleccionadas</h4>
+                  <p data-i18n="showcase.item1.desc">Compilado de trabajos</p>
+                </article>
+                <article class="strip__item strip__item--wide">
+                  <div class="strip__media">
+                    <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-4-poster.jpg">
+                      <source data-src="./media/showcase-4.webm" type="video/webm" />
+                      <source data-src="./media/showcase-4.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <h4 data-i18n="showcase.item2.title">Institucional TTE Group</h4>
                   <p data-i18n="showcase.item2.desc">Video corporativo · Operación y logística industrial</p>
-                </div>
-              </article>
-              <article class="showcase__item">
-                <div class="showcase__media showcase__media--video">
-                  <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-5-poster.jpg">
-                    <source data-src="./media/showcase-5.webm" type="video/webm" />
-                    <source data-src="./media/showcase-5.mp4" type="video/mp4" />
-                  </video>
-                </div>
-                <div class="showcase__meta">
-                  <span class="showcase__num">03</span>
-                  <h3 data-i18n="showcase.item3.title">Anuncio en pantalla plana</h3>
+                </article>
+                <article class="strip__item">
+                  <div class="strip__media">
+                    <video muted playsinline loop autoplay preload="none" data-lazy-video poster="/media/showcase-5-poster.jpg">
+                      <source data-src="./media/showcase-5.webm" type="video/webm" />
+                      <source data-src="./media/showcase-5.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <h4 data-i18n="showcase.item3.title">Anuncio en pantalla plana</h4>
                   <p data-i18n="showcase.item3.desc">CGI en tiempo real · Ilusión de profundidad</p>
-                </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============ 8. VALUES ============ -->
+        <section id="values" class="section values">
+          <div class="container">
+            <div class="section__head">
+              <p class="eyebrow" data-reveal><span class="eyebrow__dot"></span><span data-i18n="values.eyebrow">Cómo trabajamos</span></p>
+              <h2 class="h2" data-mask>
+                <span data-i18n="values.title1">Cinco valores,</span>
+                <em data-i18n="values.title2">una forma de hacer.</em>
+              </h2>
+            </div>
+            <div class="values__grid">
+              <article class="value has-grain" style="--c: var(--peach)" data-reveal>
+                <span class="value__num">01</span>
+                <h3 data-i18n="values.v1.title">Disrupción con resultados</h3>
+                <p data-i18n="values.v1.desc">Nos animamos a lo distinto, pero ninguna idea sale sin un objetivo claro: que termine en ventas.</p>
+              </article>
+              <article class="value has-grain" style="--c: var(--pink)" data-reveal>
+                <span class="value__num">02</span>
+                <h3 data-i18n="values.v2.title">Cercanía</h3>
+                <p data-i18n="values.v2.desc">Nos metemos a fondo en cada cliente y trabajamos como parte de su equipo.</p>
+              </article>
+              <article class="value has-grain" style="--c: var(--lavender)" data-reveal>
+                <span class="value__num">03</span>
+                <h3 data-i18n="values.v3.title">Siempre un paso más</h3>
+                <p data-i18n="values.v3.desc">No esperamos que nos pidan: cuando algo funciona, proponemos lo siguiente.</p>
+              </article>
+              <article class="value has-grain" style="--c: var(--sky)" data-reveal>
+                <span class="value__num">04</span>
+                <h3 data-i18n="values.v4.title">Buen clima de trabajo</h3>
+                <p data-i18n="values.v4.desc">Respeto y buena energía, adentro del equipo y con cada cliente.</p>
+              </article>
+              <article class="value has-grain" style="--c: var(--yellow)" data-reveal>
+                <span class="value__num">05</span>
+                <h3 data-i18n="values.v5.title">Transparencia</h3>
+                <p data-i18n="values.v5.desc">Claridad en tiempos, números, y en lo que funciona y lo que no.</p>
               </article>
             </div>
           </div>
         </section>
 
-        <!-- 5.5 STAND / PHYSICAL EXPERIENCE -->
-        <section id="stand" class="stand" data-section>
-          <p class="stand__eyebrow" data-i18n="stand.eyebrow">07 — Puesta en escena</p>
-          <div class="stand__frame" data-reveal>
-            <img class="stand__img" src="/media/stand-tecnoimagen.jpg" alt="" loading="lazy" />
-          </div>
-          <div class="stand__caption">
-            <h2 data-i18n="stand.title">Del render a la experiencia real.</h2>
-            <p data-i18n="stand.desc">
-              Diseñamos y producimos stands y espacios de marca de punta a punta: propuesta 3D, identidad, iluminación,
-              contenido audiovisual y montaje en el lugar.
-            </p>
-          </div>
-        </section>
-
-        <!-- 6. CAPABILITIES -->
-        <section id="capabilities" class="capabilities" data-section>
-          <p class="capabilities__eyebrow" data-i18n="capabilities.eyebrow">08 — Capacidades</p>
-          <ul class="capabilities__list">
-            <li class="capabilities__item" data-cap>
-              <span class="capabilities__index">01</span>
-              <h3 data-i18n="capabilities.item1.title">Marketing Strategy &amp; Growth</h3>
-              <p data-i18n="capabilities.item1.desc">No se trata solo de comunicar: se trata de construir una dirección clara. Diseñamos estrategias que conectan los objetivos comerciales de cada marca con campañas, contenidos y acciones pensadas para crecer, posicionarse y generar resultados medibles.</p>
-              <div class="capabilities__tags" aria-hidden="true"><span>Auditoría de marca</span><span>Estrategia de comunicación</span><span>Posicionamiento</span><span>Planificación comercial</span><span>Campañas integrales</span><span>Estrategia de contenido</span><span>Paid media</span><span>Meta Ads</span><span>LinkedIn Ads</span><span>Email marketing</span><span>Mercado Libre Ads</span><span>Pinterest Ads</span><span>Análisis de métricas</span><span>Optimización de campañas</span><span>Reportes de performance</span><span>Customer journey</span><span>Estrategia de lanzamiento</span><span>Consultoría de marketing</span></div>
-            </li>
-            <li class="capabilities__item" data-cap>
-              <span class="capabilities__index">02</span>
-              <h3 data-i18n="capabilities.item2.title">Branding &amp; Dirección Creativa</h3>
-              <p data-i18n="capabilities.item2.desc">Una marca es mucho más que un logo. Construimos identidades visuales con personalidad, criterio y coherencia, capaces de transmitir una historia, diferenciarse en el mercado y sostenerse en todos los puntos de contacto.</p>
-              <div class="capabilities__tags" aria-hidden="true"><span>Estrategia de marca</span><span>Naming</span><span>Big idea</span><span>Concepto creativo</span><span>Identidad visual</span><span>Logo design</span><span>Sistema gráfico</span><span>Paleta cromática</span><span>Tipografías</span><span>Brand guidelines</span><span>Dirección de arte</span><span>Diseño institucional</span><span>Diseño para redes</span><span>Piezas digitales</span><span>Presentaciones comerciales</span><span>Merchandising</span><span>Aplicaciones de marca</span></div>
-            </li>
-            <li class="capabilities__item" data-cap>
-              <span class="capabilities__index">03</span>
-              <h3 data-i18n="capabilities.item3.title">Diseño &amp; Contenido Audiovisual</h3>
-              <p data-i18n="capabilities.item3.desc">Creamos contenido visual pensado para captar atención, comunicar con claridad y potenciar la presencia de cada marca en redes, campañas, eventos y plataformas digitales.</p>
-              <div class="capabilities__tags" aria-hidden="true"><span>Producción audiovisual</span><span>Videos institucionales</span><span>Contenido para redes sociales</span><span>Motion graphics</span><span>Animación 2D</span><span>Animación 3D</span><span>Modelado 3D</span><span>Postproducción</span><span>Edición de video</span><span>Diseño sonoro</span><span>Piezas para campañas</span><span>Contenido para pantallas</span><span>Videos para eventos</span><span>Videos publicitarios</span><span>Contenido de producto</span><span>Storytelling audiovisual</span></div>
-            </li>
-            <li class="capabilities__item" data-cap>
-              <span class="capabilities__index">04</span>
-              <h3 data-i18n="capabilities.item4.title">Eventos &amp; Activaciones</h3>
-              <p data-i18n="capabilities.item4.desc">Convertimos ideas en experiencias reales. Diseñamos, producimos y acompañamos activaciones de marca, lanzamientos y eventos que combinan creatividad, producción integral y soluciones tecnológicas.</p>
-              <div class="capabilities__tags" aria-hidden="true"><span>Eventos corporativos</span><span>Lanzamientos de marca</span><span>Activaciones BTL</span><span>Stands</span><span>Experiencias interactivas</span><span>Producción integral</span><span>Dirección creativa de eventos</span><span>Diseño de propuesta visual</span><span>Coordinación de proveedores</span><span>Contenido para eventos</span><span>Instalaciones tecnológicas</span><span>Juegos para activaciones</span><span>Dinámicas de participación</span><span>Acciones promocionales</span><span>Experiencias para ferias y exposiciones</span></div>
-            </li>
-            <li class="capabilities__item" data-cap>
-              <span class="capabilities__index">05</span>
-              <h3 data-i18n="capabilities.item5.title">Web &amp; Ecosistema Digital</h3>
-              <p data-i18n="capabilities.item5.desc">Diseñamos sitios y plataformas digitales que no solo se ven bien, sino que también ordenan la comunicación, presentan servicios, captan oportunidades y fortalecen la presencia online de cada marca.</p>
-              <div class="capabilities__tags" aria-hidden="true"><span>Sitios web institucionales</span><span>Landing pages</span><span>E-commerce</span><span>UX/UI</span><span>Diseño web</span><span>Contenido web</span><span>Copywriting</span><span>Optimización visual</span><span>Arquitectura de información</span><span>Secciones comerciales</span><span>Showcase de proyectos</span><span>Integración con redes</span><span>Formularios de contacto</span><span>Mantenimiento web</span><span>Actualización de contenidos</span></div>
-            </li>
-          </ul>
-        </section>
-
-        <!-- 7. FINAL EXPERIENCE / CTA -->
-        <section id="final" class="final" data-section>
-          <div class="final__stage">
-            <video
-              class="final__video"
-              muted
-              playsinline
-              loop
-              preload="none"
-              data-lazy-video
-              poster="/media/scrub-poster.jpg"
-            >
-              <source data-src="./media/final-mobile.webm" type="video/webm" />
-              <source data-src="./media/final-mobile.mp4" type="video/mp4" />
-            </video>
-            <div class="final__vignette"></div>
-          </div>
-          <div class="final__frame">
-            <h2 class="final__title" data-reveal>
-              <span data-i18n="final.title.line1">Creative</span><br /><em data-i18n="final.title.line2">Studio 360°</em>
-            </h2>
-            <a class="final__link" href="mailto:administracion@penta-mkt.com">
-              administracion@penta-mkt.com
-              <span>→</span>
-            </a>
-            <div class="final__contacts">
-              <a class="final__contact" href="https://wa.me/5491166626125" target="_blank" rel="noopener">
-                <span data-i18n="final.contact.whatsapp">WhatsApp</span>
-              </a>
-              <a class="final__contact" href="https://www.instagram.com/penta.std/" target="_blank" rel="noopener">
-                @penta.std
-              </a>
+        <!-- ============ 9. FINAL CTA ============ -->
+        <section id="final" class="section final">
+          <div class="bokeh" aria-hidden="true"><b style="--x:93%;--y:34%;--s:60px;--c:var(--peach);--b:1.9px;--o:0.83;--d:6s;--dl:-10.5s;--dx:125px;--dy:-81px"></b><b style="--x:40%;--y:19%;--s:80px;--c:var(--peach);--b:5.6px;--o:0.52;--d:8.4s;--dl:-17.1s;--dx:39px;--dy:24px"></b><b style="--x:57%;--y:1%;--s:110px;--c:var(--pink);--b:8.2px;--o:0.72;--d:6s;--dl:-7.5s;--dx:13px;--dy:21px"></b><b style="--x:56%;--y:57%;--s:34px;--c:var(--peach);--b:4.3px;--o:0.72;--d:6s;--dl:-1.1s;--dx:-90px;--dy:52px"></b><b style="--x:29%;--y:52%;--s:190px;--c:var(--lavender);--b:10.5px;--o:0.62;--d:9.7s;--dl:-12.6s;--dx:-79px;--dy:21px"></b><b style="--x:71%;--y:24%;--s:60px;--c:var(--peach);--b:8.9px;--o:0.55;--d:7.5s;--dl:-13.6s;--dx:-107px;--dy:-2px"></b><b style="--x:6%;--y:50%;--s:150px;--c:var(--peach);--b:13.9px;--o:0.83;--d:7.0s;--dl:-6.3s;--dx:0px;--dy:86px"></b><b style="--x:7%;--y:22%;--s:190px;--c:var(--lavender);--b:13.0px;--o:0.53;--d:9.4s;--dl:-5.6s;--dx:24px;--dy:52px"></b><b style="--x:70%;--y:81%;--s:60px;--c:var(--sky);--b:4.1px;--o:0.88;--d:7.1s;--dl:-11.0s;--dx:-2px;--dy:-81px"></b><b style="--x:72%;--y:34%;--s:46px;--c:var(--peach);--b:8.4px;--o:0.7;--d:6s;--dl:-7.2s;--dx:-68px;--dy:-105px"></b><b style="--x:53%;--y:64%;--s:190px;--c:var(--lavender);--b:15.9px;--o:0.77;--d:7.3s;--dl:-4.2s;--dx:-127px;--dy:-100px"></b><b style="--x:46%;--y:53%;--s:34px;--c:var(--peach);--b:3.5px;--o:0.5;--d:7.5s;--dl:-6.6s;--dx:19px;--dy:129px"></b><b style="--x:88%;--y:71%;--s:80px;--c:var(--peach);--b:8.1px;--o:0.82;--d:7.3s;--dl:-7.2s;--dx:-123px;--dy:38px"></b><b style="--x:5%;--y:16%;--s:46px;--c:var(--yellow);--b:2.7px;--o:0.64;--d:6s;--dl:-0.0s;--dx:-107px;--dy:-115px"></b><b style="--x:1%;--y:80%;--s:110px;--c:var(--lavender);--b:12.1px;--o:0.56;--d:6.5s;--dl:-6.3s;--dx:-41px;--dy:-108px"></b><b style="--x:46%;--y:26%;--s:80px;--c:var(--lavender);--b:2.6px;--o:0.8;--d:9.4s;--dl:-8.6s;--dx:59px;--dy:4px"></b><b style="--x:34%;--y:62%;--s:110px;--c:var(--yellow);--b:15.1px;--o:0.8;--d:6.8s;--dl:-11.6s;--dx:-125px;--dy:98px"></b><b style="--x:34%;--y:17%;--s:46px;--c:var(--lavender);--b:5.6px;--o:0.7;--d:8.8s;--dl:-11.0s;--dx:88px;--dy:74px"></b><b style="--x:22%;--y:34%;--s:190px;--c:var(--lavender);--b:14.0px;--o:0.58;--d:7.9s;--dl:-13.2s;--dx:151px;--dy:84px"></b><b style="--x:17%;--y:54%;--s:60px;--c:var(--peach);--b:4.1px;--o:0.82;--d:9.4s;--dl:-6.3s;--dx:145px;--dy:-120px"></b></div>
+          <div class="container">
+            <div class="final__panel has-grain" data-reveal>
+              <div class="final__content">
+                <p class="eyebrow"><span class="eyebrow__dot"></span><span data-i18n="final.eyebrow">Hablemos</span></p>
+                <h2 class="final__title" data-mask>
+                  <span data-i18n="final.title1">Contanos tu negocio.</span>
+                  <em data-i18n="final.title2">Armamos el plan.</em>
+                </h2>
+                <p class="final__sub" data-i18n="final.sub">Un solo interlocutor, orden y resultados medibles.</p>
+                <div class="final__actions">
+                  <a class="btn btn--ink" href="mailto:administracion@penta-mkt.com" data-i18n="final.cta.mail">Escribinos por mail</a>
+                  <a class="btn btn--light" href="https://wa.me/5491166626125" target="_blank" rel="noopener" data-i18n="final.cta.wa">Escribinos por WhatsApp</a>
+                </div>
+                <p class="final__meta">
+                  <a href="mailto:administracion@penta-mkt.com">administracion@penta-mkt.com</a>
+                  <a href="https://www.instagram.com/penta.std/" target="_blank" rel="noopener">@penta.std</a>
+                </p>
+              </div>
             </div>
-            <p class="final__sub" data-i18n="final.sub">Penta — División de Contenido Anamórfico</p>
           </div>
         </section>
       </main>
 
       <footer class="footer">
-        <span>© <span id="year"></span> Penta. <span data-i18n="footer.text">Anamorphic Web — prototipo</span>.</span>
-        <a class="footer__link" href="https://www.instagram.com/penta.std/" target="_blank" rel="noopener">@penta.std</a>
-        <span>Buenos Aires</span>
+        <div class="footer__inner">
+          <img src="/brand/wordmark-dark.png" alt="penta." width="1000" height="335" class="footer__logo" />
+          <span class="footer__tag">Everything creative. Built to sell.</span>
+          <span class="footer__meta">© <span id="year"></span> Penta Studio · Buenos Aires</span>
+        </div>
       </footer>
     </div>
     <script type="module" src="/src/main.ts"></script>

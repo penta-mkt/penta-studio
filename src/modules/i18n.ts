@@ -68,9 +68,7 @@ export function applyLanguage(lang: Lang): void {
     el.setAttribute("aria-label", lang === "es" ? "Switch to English" : "Cambiar a español");
   });
 
-  // Copy length changes between languages, which can change wrapped-text
-  // heights inside pinned sections (showcase, scroll-exp) — re-measure
-  // once layout settles so scrub distances stay accurate.
+  // Copy length changes between languages; re-measure the pinned scenes.
   requestAnimationFrame(() => ScrollTrigger.refresh());
 }
 

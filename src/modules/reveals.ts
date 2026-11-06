@@ -1,18 +1,22 @@
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-/** Generic fade/slide-up reveal for any [data-reveal] element outside the hero. */
+/** Fade/translate-in for every [data-reveal] element as it enters the viewport. */
 export function initReveals(): void {
-  const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]")).filter(
-    (el) => !el.closest(".hero")
-  );
+  const items = document.querySelectorAll<HTMLElement>("[data-reveal]");
+  if (!items.length) return;
 
-  els.forEach((el) => {
-    gsap.set(el, { autoAlpha: 0, y: 24 });
-    ScrollTrigger.create({
-      trigger: el,
-      start: "top 82%",
-      onEnter: () => gsap.to(el, { autoAlpha: 1, y: 0, duration: 1, ease: "power3.out" }),
-    });
-  });
+  if (!("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("is-in"));
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        io.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+  );
+  items.forEach((el) => io.observe(el));
 }
